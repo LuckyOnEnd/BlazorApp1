@@ -1,0 +1,208 @@
+﻿@page "/"
+@using Syncfusion.Pdf;
+@using pdf_generate;
+@inject IWebHostEnvironment _webHostEnvironment
+@inject IJSRuntime _jsRuntime
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<button @onclick="GenPdf">First template</button>
+<button @onclick="GenPdf2">Second template</button>
+
+<button @onclick="GetPdf3">MinFirstTem</button>
+
+@code{
+    public async void GenPdf()
+    {
+        PdfSerivce pdf = new PdfSerivce(_webHostEnvironment);
+        MemoryStream pdfStream = pdf.CreatePDF(GenerateRootTemplate());
+
+        await _jsRuntime.InvokeAsync<object>(
+            "saveAsFile",
+            "Template.pdf",
+            Convert.ToBase64String(pdfStream.ToArray()));
+    }
+
+    public async void GenPdf2()
+    {
+        PdfService2 pdf = new PdfService2(_webHostEnvironment);
+        MemoryStream pdfStream = pdf.CreatePDF(GenerateSecondPdfTemplate());
+
+        await _jsRuntime.InvokeAsync<object>(
+            "saveAsFile",
+            "Template2.pdf",
+            Convert.ToBase64String(pdfStream.ToArray()));
+    }
+
+    public async void GetPdf3()
+    {
+        PdfServiceCard1 pdf = new PdfServiceCard1();
+        MemoryStream pdfStream = pdf.CreatePdf();
+
+        await _jsRuntime.InvokeAsync<object>(
+            "saveAsFile",
+            "Template2.pdf",
+            Convert.ToBase64String(pdfStream.ToArray()));
+    }
+
+    private RootProduction GenerateSecondPdfTemplate()
+    {
+        return new()
+        {
+            template = "SemiProductDocument",
+            copynumber = 1,
+            drawingpath = "https://10.0.0.218:44380/view/2023-07-19/2669-11-12-21-941-000_CC/jpg",
+            collectionnumber = "667",
+            ordernumber = "29668/ZD/2023/1/P1",
+            projectwithclient = "266922S - WELCON",
+            goalindex = "2669-11-12-21-941-000",
+            goalrevision = "CC",
+            goalname = "Frame - flange",
+            goalquantity = 12,
+            goalcomments = "",
+            productlindex = "2669-11-12-21-941-010",
+            productrevision = "CC",
+            productname = "Plate",
+            productquantity = 12,
+            drawingmaterial = "",
+            drawingdimensions = "",
+            preoductcomments = "",
+            createdby = "PBI",
+            creasationdate = "2023-08-11",
+            materials = new()
+            {
+                new()
+                {
+                    Index = "X-XXX-XXX",
+                    Name = "B10acha XXX",
+                    Quantity = 1,
+                    Unit = "szt",
+                }
+            },
+            operations = new()
+            {
+                new()
+                {
+                    Operationname = "Laser",
+                    Workplacename = "3030",
+                    Plannedstopdate = "2023-08-22",
+                    Plannedtime = 1,
+                    Isqualitycontrol = true,
+                    Comments = ""
+                }
+            },
+            others = new()
+            {
+                new()
+                {
+                    Title = "Parametry lasera",
+                    Values = new()
+                    {
+                        new() { Name = "Program", StringValue = "MC2023081122" },
+                        new() { Name = "Data", StringValue = "2023-08-20" },
+                        new() { Name = "Autor", StringValue = "MCE" },
+                        new() { Name = "Rozkrój", StringValue = "1" },
+                        new() { Name = "Uwagi", StringValue = "" },
+                    }
+                }
+            }
+        };
+    }
+    
+    private Root GenerateRootTemplate()
+    {
+        return new()
+        {
+            Template = "OwnProductDocument",
+            Copynumber = 1,
+            Drawingpath = "https://10.0.0.218:44380/view/2023-07-19/2669-11-12-21-941-000_CC/jpg",
+            Collectionnumber = "667",
+            Ordernumber = "29668/ZD/2023/1/S1",
+            Projectwithclient = "266922S - WELCON",
+            Goalindex = "2669-11-12-21-941-000",
+            Goalrevision = "CC",
+            Goalname = "Frame - flange",
+            Goalquantity = 12,
+            Colour = "Black",
+            Drawingmaterial = "",
+            Goalcomments = "",
+            Createdby = "PBI",
+            Creasationdate = "2023-08-11",
+            Materials = new()
+            {
+                new Material()
+                {
+                    Index = "X-XXX-XXX",
+                    Name = "Bl0acha XXX",
+                    Quantity = 1,
+                    Unit = "szt"
+                }
+            },
+            Operations = new()
+            {
+                new()
+                {
+                    Operationname = "Spawanie",
+                    Workplacename = "MES8",
+                    Plannedstopdate = "2023-08-22",
+                    Plannedtime = 2,
+                    Isqualitycontrol = true,
+                    Comments = ""
+                }
+            },
+            Semiproducts = new()
+            {
+                new()
+                {
+                    Title = "Kompletacja plastyczna",
+                    Lines = new()
+                    {
+                        new()
+                        {
+                            Ordernumber = "29668/ZD/2023/1/P1",
+                            Index = "2669-11-12-230941-001",
+                            Revision = "CA",
+                            Name = "Plate",
+                            Drawingmaterial = "C45",
+                            Quantity = 24,
+                            Path = "Laser-5230"
+                        }
+                    }
+                },
+                new()
+                {
+                    Title = "Kompletacja plastyczna",
+                    Lines = new()
+                    {
+                        new()
+                        {
+                            Ordernumber = "29668/ZD/2023/1/P1",
+                            Index = "2669-11-12-230941-001",
+                            Revision = "CA",
+                            Name = "Plate",
+                            Drawingmaterial = "C45",
+                            Quantity = 24,
+                            Path = "Laser-5230"
+                        }
+                    }
+                }
+            },
+            Others = new()
+            {
+                new()
+                {
+                    Title = "Tewechnologia zrobotyzowana",
+                    Values = new()
+                    {
+                        new() { Name = "Program", StringValue = "MC2023081122" },
+                        new() { Name = "Data", StringValue = "2023-08-20" },
+                        new() { Name = "Autor", StringValue = "MCE" },
+                        new() { Name = "Narzędzie/przyrząd", StringValue = "XXXXX-XX-XX-XXXX-XXXX" },
+                        new() { Name = "Uwagi", StringValue = "" },
+                    }
+                }
+            }
+        };
+    }
+}

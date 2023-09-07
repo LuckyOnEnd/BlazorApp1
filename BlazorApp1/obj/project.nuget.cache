@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "dgSpecHash": "Jh5xAzZBF+bSJmJAG8uSt++haxpshOihozE/yjuVblxzHasSwk1GT3gSghvOsSAgDJv5cVyep/NIO935k6WKGw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.0\\microsoft.aspnetcore.authorization.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.0\\microsoft.aspnetcore.components.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\7.0.0\\microsoft.aspnetcore.components.analyzers.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\7.0.0\\microsoft.aspnetcore.components.forms.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.aspnetcore.components.web\\7.0.0\\microsoft.aspnetcore.components.web.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.0\\microsoft.aspnetcore.metadata.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.jsinterop\\7.0.0\\microsoft.jsinterop.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\syncfusion.blazor.core.22.2.11.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.compression.net.core\\22.2.11\\syncfusion.compression.net.core.22.2.11.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.licensing\\22.2.11\\syncfusion.licensing.22.2.11.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.pdf.net.core\\22.2.11\\syncfusion.pdf.net.core.22.2.11.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\system.text.encoding.codepages\\4.4.0\\system.text.encoding.codepages.4.4.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
