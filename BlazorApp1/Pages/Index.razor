@@ -11,7 +11,7 @@
 <button @onclick="GenPdf2">Second template</button>
 
 <button @onclick="GetPdf3">MinFirstTem</button>
-
+<button @onclick="GetPdf4">MinSecTem</button>
 @code{
     public async void GenPdf()
     {
@@ -38,7 +38,7 @@
     public async void GetPdf3()
     {
         PdfServiceCard1 pdf = new PdfServiceCard1();
-        MemoryStream pdfStream = pdf.CreatePdf();
+        MemoryStream pdfStream = pdf.CreatePdf(GenerateFirstSmallTemplate());
 
         await _jsRuntime.InvokeAsync<object>(
             "saveAsFile",
@@ -46,6 +46,50 @@
             Convert.ToBase64String(pdfStream.ToArray()));
     }
 
+    public async void GetPdf4()
+    {
+        PdfServiceCard2 pdf = new();
+        MemoryStream pdfStream = pdf.CreatePdf(GenerateSecondSmallTemplate());
+
+        await _jsRuntime.InvokeAsync<object>(
+            "saveAsFile",
+            "Template2.pdf",
+            Convert.ToBase64String(pdfStream.ToArray()));
+    }
+
+    private NRoot GenerateSecondSmallTemplate()
+    {
+        return new()
+        {
+            template = "DetailLabel",
+            copynumber = 1,
+            collectionnumber = "1914",
+            quantity = 1,
+            projectwithclient = "267022S - WELCON",
+            ordernumber = "34484/ZD/2023/1/P",
+            productname = "Plate",
+            productindexwithrevision = "2670-64-71-98-390-010_CA",
+            goalname = "Frame welded",
+            goalindexwithrevision = "2670-64-71-98-390-010_CA"
+        };
+    }
+
+    private SRoot GenerateFirstSmallTemplate()
+    {
+        return new()
+        {
+            template = "MergingLabel",
+            copynumber = 1,
+            collectionnumber = "1914",
+            quantity = 1,
+            projectwithclient = "267022S - WELCON",
+            ordernumber = "34484/ZD/2023/1/S1",
+            productname = "Frame welded",
+            productindexwithrevision = "2670-64-71-98-390-000_CA",
+            colour = "BRAK",
+            path = "Spaw-KonS-O.Pow"
+        };
+    }
     private RootProduction GenerateSecondPdfTemplate()
     {
         return new()

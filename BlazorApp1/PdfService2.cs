@@ -445,59 +445,53 @@ namespace BlazorApp1
             pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
             #endregion
 
-            // #region FOOTER
-            // RectangleF bounds = new RectangleF(0, 0, pdfDocument.Pages[0].GetClientSize().Width, 50);
-            // PdfPageTemplateElement footer = new PdfPageTemplateElement(bounds);
-            // PdfFont fontFooter = new PdfStandardFont(PdfFontFamily.Helvetica, 7);
-            //
-            // PdfGrid footerGrid = new PdfGrid();
-            // footerGrid.Rows.Add();
-            // footerGrid.Columns.Add(9);
-            // footerGrid.Rows[0].Height = 16;
-            //
-            // PdfPageNumberField pageNumber = new PdfPageNumberField();
-            // PdfPageCountField count = new PdfPageCountField();
-            //
-            // footerGrid.Rows[0].Cells[0].Value = "Zlecenie";
-            // footerGrid.Rows[0].Cells[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            // footerGrid.Rows[0].Cells[0].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 9);
-            //
-            // footerGrid.Rows[0].Cells[1].Value = "{ 1 }";
-            // footerGrid.Rows[0].Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            // footerGrid.Rows[0].Cells[1].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 9);
-            //
-            // footerGrid.Rows[0].Cells[2].Value = "Nr kompl";
-            // footerGrid.Rows[0].Cells[2].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            // footerGrid.Rows[0].Cells[2].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 9);
-            //
-            // footerGrid.Rows[0].Cells[3].Value = "{ 2 }";
-            // footerGrid.Rows[0].Cells[3].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            // footerGrid.Rows[0].Cells[3].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 9);
-            //
-            // footerGrid.Rows[0].Cells[4].Value = "Wystawił";
-            // footerGrid.Rows[0].Cells[4].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            // footerGrid.Rows[0].Cells[4].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 9, PdfFontStyle.Bold);
-            //
-            // footerGrid.Rows[0].Cells[6].Value = "{ 30 }";
-            // footerGrid.Rows[0].Cells[6].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            // footerGrid.Rows[0].Cells[6].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 9);
-            //
-            // footerGrid.Rows[0].Cells[6].Value = $"Strona {pageNumber} z {count}";
-            // footerGrid.Rows[0].Cells[6].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            // footerGrid.Rows[0].Cells[6].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 9);
-            //
-            // // footerGrid
-            //
-            // PdfBrush brush = new PdfSolidBrush(Color.Black);
-            // PdfCompositeField compositeField = new PdfCompositeField(fontFooter, brush, "Page {0} of {1}", pageNumber, count);
-            //
-            // footerGrid.Draw(footer.Graphics, new PointF(0, 30));
-            //
-            // pdfDocument.Template.Bottom = footer;
-            //
-            // #endregion
+            #region SECOND_LINE
 
+            for (int i = 0; i < 60; i++)
+            {
+                if(i % 2 != 0)
+                {
+                    PdfPen pen = new PdfPen(PdfBrushes.Black, 5f);
+                    PointF point1 = new PointF(i * 10, t.Bounds.Bottom + 40);
+                    PointF point2 = new PointF(i * 10 + 10, t.Bounds.Bottom + 40);
+                    pdfPage.Graphics.DrawLine(pen, point1, point2);
+                }
+            }
+            pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
+            #endregion
 
+            PdfGridLayoutResult otherResult = null;
+            for (int i = 0; i < root.others.Count; i++)
+            {
+                PdfGraphics otherGraphics = pdfPage.Graphics;
+                PdfFont othersOperationFort = new PdfStandardFont(PdfFontFamily.Helvetica, 17, PdfFontStyle.Bold);
+                otherGraphics.DrawString(root.others[0].Title, othersOperationFort, PdfBrushes.Black, new PointF(0, t.Bounds.Bottom + 55));
+                for (int u = 0; u < root.others[i].Values.Count; u++)
+                {
+                    PdfGrid othersGrid = new();
+                    othersGrid.Rows.Add();
+                    othersGrid.Rows.Add();
+                    othersGrid.Columns.Add(2);
+
+                    othersGrid.Rows[0].Cells[0].Value = "Nazwa";
+                    othersGrid.Rows[0].Cells[0].Style = SetCellStyle(11, true, PdfTextAlignment.Center);
+            
+                    othersGrid.Rows[0].Cells[1].Value = "Wartość";
+                    othersGrid.Rows[0].Cells[1].Style = SetCellStyle(11, true, PdfTextAlignment.Center);
+            
+                    othersGrid.Rows[1].Cells[0].Value = root.others[i].Values[u].Name;
+                    othersGrid.Rows[1].Cells[0].Style = SetCellStyle(11, false, PdfTextAlignment.Center);
+            
+                    othersGrid.Rows[1].Cells[1].Value = root.others[i].Values[u].StringValue;
+                    othersGrid.Rows[1].Cells[1].Style = SetCellStyle(11, true, PdfTextAlignment.Center);
+                    
+                    if(u == 0)
+                        otherResult = othersGrid.Draw(pdfPage, new PointF(0, (t.Bounds.Bottom + 80)));
+                    else
+                        otherResult = othersGrid.Draw(pdfPage, new PointF(0, (otherResult.Bounds.Bottom + 40)));
+                    pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
+                }
+            }
             headerGrid.Draw(pdfPage, Syncfusion.Drawing.PointF.Empty);
             second.Draw(pdfPage, new Point(0, 60));
             thirdGrid.Draw(pdfPage, new Point(0, 120));

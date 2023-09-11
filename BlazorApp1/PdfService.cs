@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Syncfusion.Drawing;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Barcode;
@@ -320,28 +321,22 @@ namespace pdf_generate
 
             PdfGridRow pdfGridHeader = materialGrid.Headers[0];
             pdfGridHeader.Cells[0].Value = "Nr";
-            pdfGridHeader.Cells[0].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11, PdfFontStyle.Bold);
-            pdfGridHeader.Cells[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            pdfGridHeader.Cells[0].Style = SetCellStyle(11, true, PdfTextAlignment.Center);
 
             pdfGridHeader.Cells[1].Value = "Index materialu";
-            pdfGridHeader.Cells[1].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11);
-            pdfGridHeader.Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            pdfGridHeader.Cells[1].Style = SetCellStyle(11, false, PdfTextAlignment.Center);
 
             pdfGridHeader.Cells[2].Value = "Nazwa materialu";
-            pdfGridHeader.Cells[2].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11);
-            pdfGridHeader.Cells[2].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            pdfGridHeader.Cells[2].Style = SetCellStyle(11, false, PdfTextAlignment.Center);
 
             pdfGridHeader.Cells[3].Value = "Ilość";
-            pdfGridHeader.Cells[3].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11);
-            pdfGridHeader.Cells[3].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            pdfGridHeader.Cells[3].Style = SetCellStyle(11, false, PdfTextAlignment.Center);
 
             pdfGridHeader.Cells[4].Value = "JM";
-            pdfGridHeader.Cells[4].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11);
-            pdfGridHeader.Cells[4].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            pdfGridHeader.Cells[4].Style = SetCellStyle(11, false, PdfTextAlignment.Center);
 
             pdfGridHeader.Cells[5].Value = "Uwagi";
-            pdfGridHeader.Cells[5].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11);
-            pdfGridHeader.Cells[5].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            pdfGridHeader.Cells[5].Style = SetCellStyle(11, false, PdfTextAlignment.Center);
 
             var e = materialGrid.Draw(pdfPage, new Point(0, 235));
             pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
@@ -363,7 +358,7 @@ namespace pdf_generate
 
             IEnumerable<Operation> opearationsTable = root.Operations;
             operationGrid.DataSource = opearationsTable;
-
+            
             if (operationGrid.DataSource is not null)
             {
                 for (int i = 0; i < operationGrid.Rows.Count; i++)
@@ -390,40 +385,31 @@ namespace pdf_generate
             operationGridHeader.Cells[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
 
             operationGridHeader.Cells[1].Value = "Operacja";
-            operationGridHeader.Cells[1].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
-            operationGridHeader.Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            operationGridHeader.Cells[1].Style = SetCellStyle(10, false, PdfTextAlignment.Center);
 
             operationGridHeader.Cells[2].Value = "Stanowisko";
-            operationGridHeader.Cells[2].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
-            operationGridHeader.Cells[2].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            operationGridHeader.Cells[2].Style = SetCellStyle(10, false, PdfTextAlignment.Center);
 
             operationGridHeader.Cells[3].Value = "Czas pl.";
-            operationGridHeader.Cells[3].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            operationGridHeader.Cells[3].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            operationGridHeader.Cells[3].Style = SetCellStyle(10, true, PdfTextAlignment.Center);
 
             operationGridHeader.Cells[4].Value = "Term zak.";
-            operationGridHeader.Cells[4].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            operationGridHeader.Cells[4].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            operationGridHeader.Cells[4].Style = SetCellStyle(10, true, PdfTextAlignment.Center);
 
             operationGridHeader.Cells[5].Value = "Czas rz.";
-            operationGridHeader.Cells[5].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            operationGridHeader.Cells[5].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            operationGridHeader.Cells[5].Style = SetCellStyle(10, true, PdfTextAlignment.Center);
 
             operationGridHeader.Cells[6].Value = "Inicjały";
-            operationGridHeader.Cells[6].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            operationGridHeader.Cells[6].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            operationGridHeader.Cells[6].Style = SetCellStyle(10, true, PdfTextAlignment.Center);
 
             operationGridHeader.Cells[7].Value = "QC";
-            operationGridHeader.Cells[7].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
-            operationGridHeader.Cells[7].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            operationGridHeader.Cells[7].Style = SetCellStyle(10, false, PdfTextAlignment.Center);
 
             operationGridHeader.Cells[8].Value = "Sprawdził";
-            operationGridHeader.Cells[8].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
-            operationGridHeader.Cells[8].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            operationGridHeader.Cells[8].Style = SetCellStyle(10, false, PdfTextAlignment.Center);
 
             operationGridHeader.Cells[9].Value = "Uwagi";
-            operationGridHeader.Cells[9].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            operationGridHeader.Cells[9].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            operationGridHeader.Cells[9].Style = SetCellStyle(10, true, PdfTextAlignment.Center);
 
             int getOperationSize = Operations.Count * 17;
             var t = operationGrid.Draw(pdfPage, new PointF(0, e.Bounds.Bottom + 38));
@@ -448,7 +434,7 @@ namespace pdf_generate
             #region semi-finished title
             PdfGraphics semiOperationsGraphics = pdfPage.Graphics;
             PdfFont semiOperationFort = new PdfStandardFont(PdfFontFamily.Helvetica, 17, PdfFontStyle.Bold);
-            semiOperationsGraphics.DrawString("Półwyroby: ", semiOperationFort, PdfBrushes.Black, new PointF(0, t.Bounds.Bottom + 60)); //getMaterialSize + getOperationSize +  getProductSize  + 370
+            semiOperationsGraphics.DrawString("Półwyroby: ", semiOperationFort, PdfBrushes.Black, new PointF(0, t.Bounds.Bottom + 60)); 
             #endregion
 
             #region semi_finised products
@@ -484,36 +470,28 @@ namespace pdf_generate
 
                     PdfGridRow productGridHeader = productsGrid.Headers[0];
                     productGridHeader.Cells[0].Value = "Nr";
-                    productGridHeader.Cells[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-                    productGridHeader.Cells[0].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
+                    productGridHeader.Cells[0].Style = SetCellStyle(10, true, PdfTextAlignment.Center);
 
                     productGridHeader.Cells[1].Value = "Nr zlecenia";
-                    productGridHeader.Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-                    productGridHeader.Cells[1].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
+                    productGridHeader.Cells[1].Style = SetCellStyle(10, true, PdfTextAlignment.Center);
 
                     productGridHeader.Cells[2].Value = "Numer rys";
-                    productGridHeader.Cells[2].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-                    productGridHeader.Cells[2].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
+                    productGridHeader.Cells[2].Style = SetCellStyle(10, true, PdfTextAlignment.Center);
 
                     productGridHeader.Cells[3].Value = "Rev";
-                    productGridHeader.Cells[3].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-                    productGridHeader.Cells[3].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
+                    productGridHeader.Cells[3].Style = SetCellStyle(10, false, PdfTextAlignment.Center);
 
                     productGridHeader.Cells[4].Value = "Nazwa";
-                    productGridHeader.Cells[4].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-                    productGridHeader.Cells[4].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
+                    productGridHeader.Cells[4].Style = SetCellStyle(10, true, PdfTextAlignment.Center);
 
                     productGridHeader.Cells[5].Value = "Mat.";
-                    productGridHeader.Cells[5].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-                    productGridHeader.Cells[5].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
+                    productGridHeader.Cells[5].Style = SetCellStyle(10, true, PdfTextAlignment.Center);
 
                     productGridHeader.Cells[6].Value = "Ilość";
-                    productGridHeader.Cells[6].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-                    productGridHeader.Cells[6].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
+                    productGridHeader.Cells[6].Style = SetCellStyle(10, true, PdfTextAlignment.Center);
 
                     productGridHeader.Cells[7].Value = "Ścieżka";
-                    productGridHeader.Cells[7].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-                    productGridHeader.Cells[7].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
+                    productGridHeader.Cells[7].Style  = SetCellStyle(10, true, PdfTextAlignment.Center);
                 }
 
                 if (i == 0)
@@ -522,9 +500,69 @@ namespace pdf_generate
                     t = productsGrid.Draw(pdfPage, new PointF(0, (t.Bounds.Bottom + 35)));
                 pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
             }
+            
             pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
             #endregion
 
+            #region SECOND_LINE
+
+            for (int i = 0; i < 60; i++)
+            {
+                if(i % 2 != 0)
+                {
+                    PdfPen pen = new PdfPen(PdfBrushes.Black, 5f);
+                    PointF point1 = new PointF(i * 10, t.Bounds.Bottom + 40);
+                    PointF point2 = new PointF(i * 10 + 10, t.Bounds.Bottom + 40);
+                    pdfPage.Graphics.DrawLine(pen, point1, point2);
+                }
+            }
+            pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
+            #endregion
+
+            PdfGridLayoutResult otherResult = null;
+            for (int i = 0; i < root.Others.Count; i++)
+            {
+                PdfGraphics otherGraphics = pdfPage.Graphics;
+                PdfFont othersOperationFort = new PdfStandardFont(PdfFontFamily.Helvetica, 17, PdfFontStyle.Bold);
+                otherGraphics.DrawString(root.Others[0].Title, othersOperationFort, PdfBrushes.Black, new PointF(0, t.Bounds.Bottom + 55));
+                for (int u = 0; u < root.Others[i].Values.Count; u++)
+                {
+                    PdfGrid othersGrid = new();
+                    othersGrid.Rows.Add();
+                    othersGrid.Rows.Add();
+                    othersGrid.Columns.Add(2);
+
+                    othersGrid.Rows[0].Cells[0].Value = "Nazwa";
+                    othersGrid.Rows[0].Cells[0].Style = SetCellStyle(11, true, PdfTextAlignment.Center);
+            
+                    othersGrid.Rows[0].Cells[1].Value = "Wartość";
+                    othersGrid.Rows[0].Cells[1].Style = SetCellStyle(11, true, PdfTextAlignment.Center);
+            
+                    othersGrid.Rows[1].Cells[0].Value = root.Others[i].Values[u].Name;
+                    othersGrid.Rows[1].Cells[0].Style = SetCellStyle(11, false, PdfTextAlignment.Center);
+            
+                    othersGrid.Rows[1].Cells[1].Value = root.Others[i].Values[u].StringValue;
+                    othersGrid.Rows[1].Cells[1].Style = SetCellStyle(11, true, PdfTextAlignment.Center);
+                    
+                    if(u == 0)
+                        otherResult = othersGrid.Draw(pdfPage, new PointF(0, (t.Bounds.Bottom + 80)));
+                    else
+                        otherResult = othersGrid.Draw(pdfPage, new PointF(0, (otherResult.Bounds.Bottom + 40)));
+                    pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
+                }
+            }
+
+            var imagePage = pdfDocument.Pages.Add();
+            byte[] imgByte = null;
+            using (var webClient = new WebClient())
+            {
+                webClient.UseDefaultCredentials = true;
+                Uri uri = new Uri(root.Drawingpath);
+                imgByte = webClient.DownloadData(uri);
+            }
+           // Stream memStream = new MemoryStream(ImgStream);
+            //imagePage.Graphics.DrawImage(new PdfBitmap(new));
+            
             MemoryStream stream = new MemoryStream();
             pdfDocument.Save(stream);
             pdfDocument.Close(true);

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wyqQf6QR8WqU9c4PRVR3Ea8fxsBKn7zNISkBsWh8Pw0=",
+  "Hash": "YHg6M/IIxtMtBrIHadbz4qOlkb7cO5PITSYYwlZcuG8=",
   "Source": "BlazorApp1",
   "BasePath": "_content/BlazorApp1",
   "Mode": "Default",
@@ -8,19 +8,19 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "BlazorApp1\\wwwroot",
+      "Name": "BlazorApp1/wwwroot",
       "Source": "BlazorApp1",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\compression.min.js",
+      "Identity": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/compression.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\",
+      "ContentRoot": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/",
       "BasePath": "_content/Syncfusion.Blazor.Core",
       "RelativePath": "scripts/compression.min.js",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\compression.min.js"
+      "OriginalItemSpec": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/compression.min.js"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\excelexport.min.js",
+      "Identity": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/excelexport.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\",
+      "ContentRoot": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/",
       "BasePath": "_content/Syncfusion.Blazor.Core",
       "RelativePath": "scripts/excelexport.min.js",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\excelexport.min.js"
+      "OriginalItemSpec": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/excelexport.min.js"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\fileutils.min.js",
+      "Identity": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/fileutils.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\",
+      "ContentRoot": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/",
       "BasePath": "_content/Syncfusion.Blazor.Core",
       "RelativePath": "scripts/fileutils.min.js",
       "AssetKind": "All",
@@ -65,13 +65,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\fileutils.min.js"
+      "OriginalItemSpec": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/fileutils.min.js"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\pdfexport.min.js",
+      "Identity": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/pdfexport.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\",
+      "ContentRoot": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/",
       "BasePath": "_content/Syncfusion.Blazor.Core",
       "RelativePath": "scripts/pdfexport.min.js",
       "AssetKind": "All",
@@ -82,13 +82,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\pdfexport.min.js"
+      "OriginalItemSpec": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/pdfexport.min.js"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\popup.min.js",
+      "Identity": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/popup.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\",
+      "ContentRoot": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/",
       "BasePath": "_content/Syncfusion.Blazor.Core",
       "RelativePath": "scripts/popup.min.js",
       "AssetKind": "All",
@@ -99,13 +99,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\popup.min.js"
+      "OriginalItemSpec": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/popup.min.js"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\popupsbase.min.js",
+      "Identity": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/popupsbase.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\",
+      "ContentRoot": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/",
       "BasePath": "_content/Syncfusion.Blazor.Core",
       "RelativePath": "scripts/popupsbase.min.js",
       "AssetKind": "All",
@@ -116,13 +116,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\popupsbase.min.js"
+      "OriginalItemSpec": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/popupsbase.min.js"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\sf-svg-export.min.js",
+      "Identity": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/sf-svg-export.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\",
+      "ContentRoot": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/",
       "BasePath": "_content/Syncfusion.Blazor.Core",
       "RelativePath": "scripts/sf-svg-export.min.js",
       "AssetKind": "All",
@@ -133,13 +133,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\sf-svg-export.min.js"
+      "OriginalItemSpec": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/sf-svg-export.min.js"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\svgbase.min.js",
+      "Identity": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/svgbase.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\",
+      "ContentRoot": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/",
       "BasePath": "_content/Syncfusion.Blazor.Core",
       "RelativePath": "scripts/svgbase.min.js",
       "AssetKind": "All",
@@ -150,13 +150,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\svgbase.min.js"
+      "OriginalItemSpec": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/svgbase.min.js"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\syncfusion-blazor-base.min.js",
+      "Identity": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/syncfusion-blazor-base.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\",
+      "ContentRoot": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/",
       "BasePath": "_content/Syncfusion.Blazor.Core",
       "RelativePath": "scripts/syncfusion-blazor-base.min.js",
       "AssetKind": "All",
@@ -167,13 +167,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\syncfusion-blazor-base.min.js"
+      "OriginalItemSpec": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/syncfusion-blazor-base.min.js"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\syncfusion-blazor-extended.min.js",
+      "Identity": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/syncfusion-blazor-extended.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\",
+      "ContentRoot": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/",
       "BasePath": "_content/Syncfusion.Blazor.Core",
       "RelativePath": "scripts/syncfusion-blazor-extended.min.js",
       "AssetKind": "All",
@@ -184,13 +184,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\syncfusion-blazor-extended.min.js"
+      "OriginalItemSpec": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/syncfusion-blazor-extended.min.js"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\syncfusion-blazor.min.js",
+      "Identity": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/syncfusion-blazor.min.js",
       "SourceId": "Syncfusion.Blazor.Core",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\",
+      "ContentRoot": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/",
       "BasePath": "_content/Syncfusion.Blazor.Core",
       "RelativePath": "scripts/syncfusion-blazor.min.js",
       "AssetKind": "All",
@@ -201,13 +201,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\.nuget\\packages\\syncfusion.blazor.core\\22.2.11\\staticwebassets\\scripts\\syncfusion-blazor.min.js"
+      "OriginalItemSpec": "/home/viacheslav/.nuget/packages/syncfusion.blazor.core/22.2.11/staticwebassets/scripts/syncfusion-blazor.min.js"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net7.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/obj/Debug/net7.0/scopedcss/bundle/BlazorApp1.styles.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/obj/Debug/net7.0/scopedcss/bundle/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "BlazorApp1.styles.css",
       "AssetKind": "All",
@@ -218,13 +218,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net7.0\\scopedcss\\bundle\\BlazorApp1.styles.css"
+      "OriginalItemSpec": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/obj/Debug/net7.0/scopedcss/bundle/BlazorApp1.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/obj/Debug/net7.0/scopedcss/projectbundle/BlazorApp1.bundle.scp.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/obj/Debug/net7.0/scopedcss/projectbundle/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "BlazorApp1.bundle.scp.css",
       "AssetKind": "All",
@@ -235,13 +235,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css"
+      "OriginalItemSpec": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/obj/Debug/net7.0/scopedcss/projectbundle/BlazorApp1.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/bootstrap/bootstrap.min.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -252,13 +252,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
+      "OriginalItemSpec": "wwwroot/css/bootstrap/bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/bootstrap/bootstrap.min.css.map",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -269,13 +269,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
+      "OriginalItemSpec": "wwwroot/css/bootstrap/bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/open-iconic/FONT-LICENSE",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -286,13 +286,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
+      "OriginalItemSpec": "wwwroot/css/open-iconic/FONT-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -303,13 +303,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
+      "OriginalItemSpec": "wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/open-iconic/font/fonts/open-iconic.eot",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -320,13 +320,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
+      "OriginalItemSpec": "wwwroot/css/open-iconic/font/fonts/open-iconic.eot"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/open-iconic/font/fonts/open-iconic.otf",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -337,13 +337,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
+      "OriginalItemSpec": "wwwroot/css/open-iconic/font/fonts/open-iconic.otf"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/open-iconic/font/fonts/open-iconic.svg",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -354,13 +354,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
+      "OriginalItemSpec": "wwwroot/css/open-iconic/font/fonts/open-iconic.svg"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/open-iconic/font/fonts/open-iconic.ttf",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -371,13 +371,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
+      "OriginalItemSpec": "wwwroot/css/open-iconic/font/fonts/open-iconic.ttf"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/open-iconic/font/fonts/open-iconic.woff",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -388,13 +388,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+      "OriginalItemSpec": "wwwroot/css/open-iconic/font/fonts/open-iconic.woff"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/open-iconic/ICON-LICENSE",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -405,13 +405,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
+      "OriginalItemSpec": "wwwroot/css/open-iconic/ICON-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/open-iconic/README.md",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -422,13 +422,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
+      "OriginalItemSpec": "wwwroot/css/open-iconic/README.md"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\site.css",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/css/site.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -439,13 +439,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\site.css"
+      "OriginalItemSpec": "wwwroot/css/site.css"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\favicon.png",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/favicon.png",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
@@ -456,13 +456,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\favicon.png"
+      "OriginalItemSpec": "wwwroot/favicon.png"
     },
     {
-      "Identity": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\logo-with-bg.png",
+      "Identity": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/logo-with-bg.png",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Viacheslav Trus\\Desktop\\health_eat\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "/home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/wwwroot/",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "logo-with-bg.png",
       "AssetKind": "All",
@@ -473,7 +473,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\logo-with-bg.png"
+      "OriginalItemSpec": "wwwroot/logo-with-bg.png"
     }
   ]
 }

@@ -6,6 +6,33 @@ namespace BlazorApp1
     {
     }
 
+    public class NRoot
+    {
+        public string template { get; set; }
+        public int copynumber { get; set; }
+        public string collectionnumber { get; set; }
+        public int quantity { get; set; }
+        public string projectwithclient { get; set; }
+        public string ordernumber { get; set; }
+        public string productname { get; set; }
+        public string productindexwithrevision { get; set; }
+        public string goalname { get; set; }
+        public string goalindexwithrevision { get; set; }
+    }
+    public class SRoot
+    {
+        public string template { get; set; }
+        public int copynumber { get; set; }
+        public string collectionnumber { get; set; }
+        public int quantity { get; set; }
+        public string projectwithclient { get; set; }
+        public string ordernumber { get; set; }
+        public string productname { get; set; }
+        public string productindexwithrevision { get; set; }
+        public string colour { get; set; }
+        public string path { get; set; }
+    }
+
     public class Line
     {
         public int Id { get; set; }
