@@ -8,15 +8,11 @@
 <h1>Hello, world!</h1>
 
 <button @onclick="GenPdf">First template</button>
-<button @onclick="GenPdf2">Second template</button>
-
-<button @onclick="GetPdf3">MinFirstTem</button>
-<button @onclick="GetPdf4">MinSecTem</button>
 @code{
     public async void GenPdf()
     {
-        PdfSerivce pdf = new PdfSerivce(_webHostEnvironment);
-        MemoryStream pdfStream = pdf.CreatePDF(GenerateRootTemplate());
+        PdfSerivce pdf = new PdfSerivce();
+        MemoryStream pdfStream = await pdf.CreatePDF();
 
         await _jsRuntime.InvokeAsync<object>(
             "saveAsFile",

@@ -74,3 +74,41 @@ C:/Users/Viacheslav Trus/Desktop/health_eat/BlazorApp1/BlazorApp1/bin/Debug/net7
 /home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/obj/Debug/net7.0/BlazorApp1.pdb
 /home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/obj/Debug/net7.0/BlazorApp1.genruntimeconfig.cache
 /home/viacheslav/develop/dev4you/pdf_generator_SCITEEX/BlazorApp1/obj/Debug/net7.0/ref/BlazorApp1.dll
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\appsettings.json
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\BlazorApp1.staticwebassets.runtime.json
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\BlazorApp1.exe
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\BlazorApp1.deps.json
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\BlazorApp1.runtimeconfig.json
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\BlazorApp1.dll
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\BlazorApp1.pdb
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Syncfusion.Blazor.Core.dll
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Syncfusion.Compression.Portable.dll
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Syncfusion.Licensing.dll
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Syncfusion.Pdf.Portable.dll
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.csproj.AssemblyReference.cache
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.AssemblyInfoInputs.cache
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.AssemblyInfo.cs
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.csproj.CoreCompileInputs.cache
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.RazorAssemblyInfo.cache
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.RazorAssemblyInfo.cs
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\staticwebassets\msbuild.BlazorApp1.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\staticwebassets\msbuild.build.BlazorApp1.props
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.BlazorApp1.props
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.BlazorApp1.props
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\scopedcss\bundle\BlazorApp1.styles.css
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\scopedcss\projectbundle\BlazorApp1.bundle.scp.css
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.csproj.CopyComplete
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.dll
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\refint\BlazorApp1.dll
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.pdb
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.genruntimeconfig.cache
+C:\Users\Viacheslav Trus\RiderProjects\BlazorApp1\BlazorApp1\obj\Debug\net7.0\ref\BlazorApp1.dll
