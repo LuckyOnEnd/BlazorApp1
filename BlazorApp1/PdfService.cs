@@ -128,7 +128,7 @@ namespace pdf_generate
 
             #endregion
 
-            #region ThirdChapter
+            #region GridChapter
 
             PdfGrid mainGrid = new();
             mainGrid.Columns.Add(4);
@@ -383,7 +383,22 @@ namespace pdf_generate
 
                     #endregion
                 }
-               
+                {
+                    #region Center
+
+                    PdfGrid gridContent = new();
+                    for (int i = 1; i < 5; i++)
+                    {
+                        PdfGrid gridColumns = new();
+                        gridColumns.Columns.Add(4);
+                        gridColumns.Rows.Add();
+                        gridColumns.Rows[0].Height = 57;
+                        mainGrid.Rows[i].Cells[1].Value = gridColumns;
+                        mainGrid.Rows[i].Cells[2].Value = gridColumns;
+                    }
+        
+                    #endregion
+                }
                 #endregion
             }
 
