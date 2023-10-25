@@ -1,0 +1,408 @@
+mainGrid.Rows.Add();
+                mainGrid.Rows.Add();
+                mainGrid.Rows.Add();
+                mainGrid.Rows.Add();
+                {
+                    #region LeftSide
+
+                    {
+                        #region FirstRow
+
+                        PdfGrid grid = new();
+                        grid.Rows.Add();
+                        grid.Columns.Add(3);
+
+                        #region HeightAndWidthSettings
+
+                        grid.Columns[0].Width = 50;
+                        grid.Columns[1].Width = 45;
+                        grid.Columns[2].Width = 33;
+
+                        grid.Rows[0].Height = 40;
+                    
+                        #endregion
+                    
+                        grid.Rows[0].Cells[0].Value = "Kuchnia";
+                        grid.Rows[0].Cells[1].Value = "70";
+                        grid.Rows[0].Cells[2].Value = " ";
+
+                        grid.Rows[0].Cells[0].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+                        grid.Rows[0].Cells[1].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+                        grid.Rows[0].Cells[2].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+                        
+                        mainGrid.Rows[1].Cells[0].Value = grid;
+                        
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                        grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                        
+                        #endregion
+                    }
+                    
+                    {
+                        #region SecondRow
+
+                        PdfGrid grid = new();
+                        grid.Rows.Add();
+                        grid.Columns.Add(3);
+
+                        #region HeightAndWidthSettings
+
+                        grid.Columns[0].Width = 50;
+                        grid.Columns[1].Width = 45;
+                        grid.Columns[2].Width = 33;
+
+                        grid.Rows[0].Height = 40;
+                    
+                        #endregion
+                    
+                    
+                        grid.Rows[0].Cells[0].Value = "Łazienka";
+                        grid.Rows[0].Cells[1].Value = "50";
+                        grid.Rows[0].Cells[2].Value = " ";
+
+                        grid.Rows[0].Cells[0].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+                        grid.Rows[0].Cells[1].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+                        grid.Rows[0].Cells[2].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+                        
+                        mainGrid.Rows[2].Cells[0].Value = grid;
+
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                        grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                        
+                        #endregion
+                    }
+                    
+                    {
+                        #region ThirdRow
+
+                        PdfGrid grid = new();
+                        grid.Rows.Add();
+                        grid.Columns.Add(3);
+
+                        #region HeightAndWidthSettings
+
+                        grid.Columns[0].Width = 50;
+                        grid.Columns[1].Width = 45;
+                        grid.Columns[2].Width = 33;
+
+                        grid.Rows[0].Height = 40;
+                    
+                        #endregion
+                    
+                    
+                        grid.Rows[0].Cells[0].Value = "WC";
+                        grid.Rows[0].Cells[1].Value = "30";
+                        grid.Rows[0].Cells[2].Value = " ";
+
+                        grid.Rows[0].Cells[0].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+                        grid.Rows[0].Cells[1].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+                        grid.Rows[0].Cells[2].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+                        
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                        grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                        
+                        mainGrid.Rows[3].Cells[0].Value = grid;
+
+                        #endregion
+                    }
+                    
+                    {
+                        #region FourthRow
+
+                        PdfGrid grid = new();
+                        grid.Rows.Add();
+                        grid.Columns.Add(3);
+
+                        #region HeightAndWidthSettings
+
+                        grid.Columns[0].Width = 50;
+                        grid.Columns[1].Width = 45;
+                        grid.Columns[2].Width = 33;
+
+                        grid.Rows[0].Height = 40;
+                    
+                        #endregion
+                    
+                    
+                        grid.Rows[0].Cells[0].Value = "W przewodzie\nspalinowym";
+                        grid.Rows[0].Cells[1].Value = "35";
+                        grid.Rows[0].Cells[2].Value = "X";
+
+                        grid.Rows[0].Cells[0].Style = CellStyle(7, true, PdfTextAlignment.Center, 0, 0, 15);
+                        grid.Rows[0].Cells[1].Style = CellStyle(7, true, PdfTextAlignment.Center, 0, 0, 15);
+                        grid.Rows[0].Cells[2].Style = CellStyle(7, true, PdfTextAlignment.Center, 0, 0, 15);
+
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                        grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                        
+                        mainGrid.Rows[4].Cells[0].Value = grid;
+
+                        #endregion
+                    }
+                    
+                    #endregion
+                }
+                {
+                    #region Center
+
+                    {
+                        #region FirstColumn
+
+                        {
+                            #region FirstRow
+
+                            PdfGrid grid = new();
+                            grid.Rows.Add();
+                            grid.Columns.Add(4);
+                            grid.Rows[0].Height = 40;
+                            PdfGrid row = new();
+
+                            grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                            grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[3].Style.Borders = HideBorder(true);
+
+                            #endregion
+                            mainGrid.Rows[1].Cells[1].Value = grid;
+
+                        }
+                        {
+                            #region SecondRow
+
+                            PdfGrid grid = new();
+                            grid.Rows.Add();
+                            grid.Columns.Add(4);
+                            grid.Rows[0].Height = 40;
+                            PdfGrid row = new();
+
+                            grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                            grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[3].Style.Borders = HideBorder(true);
+
+                            
+                            #endregion
+                            mainGrid.Rows[2].Cells[1].Value = grid;
+
+                        }
+                        {
+                            #region ThirdRow
+
+                            PdfGrid grid = new();
+                            grid.Rows.Add();
+                            grid.Columns.Add(4);
+                            grid.Rows[0].Height = 40;
+                            PdfGrid row = new();
+
+                            grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                            grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[3].Style.Borders = HideBorder(true);
+
+                            
+                            #endregion
+                            mainGrid.Rows[3].Cells[1].Value = grid;
+                        }
+                        {
+                            #region FourthRow
+
+                            PdfGrid grid = new();
+                            grid.Rows.Add();
+                            grid.Columns.Add(4);
+                            grid.Rows[0].Height = 40;
+                            PdfGrid row = new();
+
+                            grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                            grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[3].Style.Borders = HideBorder(true);
+                            
+                            #endregion
+                            mainGrid.Rows[4].Cells[1].Value = grid;
+                        }
+                        #endregion
+                    }
+                    {
+                        #region SecondColumn
+
+                        {
+                            #region FirstRow
+
+                            PdfGrid grid = new();
+                            grid.Rows.Add();
+                            grid.Columns.Add(4);
+                            grid.Rows[0].Height = 40;
+                            PdfGrid row = new();
+
+                            grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                            grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[3].Style.Borders = HideBorder(true);
+                            
+                            #endregion
+                            mainGrid.Rows[1].Cells[2].Value = grid;
+
+                        }
+                        {
+                            #region SecondRow
+
+                            PdfGrid grid = new();
+                            grid.Rows.Add();
+                            grid.Columns.Add(4);
+                            grid.Rows[0].Height = 40;
+                            PdfGrid row = new();
+
+                            grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                            grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[3].Style.Borders = HideBorder(true);
+
+                            #endregion
+                            mainGrid.Rows[2].Cells[2].Value = grid;
+
+                        }
+                        {
+                            #region ThirdRow
+
+                            PdfGrid grid = new();
+                            grid.Rows.Add();
+                            grid.Columns.Add(4);
+                            grid.Rows[0].Height = 40;
+                            PdfGrid row = new();
+
+                            grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                            grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[3].Style.Borders = HideBorder(true);
+                            
+                            #endregion
+                            mainGrid.Rows[3].Cells[2].Value = grid;
+                        }
+                        {
+                            #region FourthRow
+
+                            PdfGrid grid = new();
+                            grid.Rows.Add();
+                            grid.Columns.Add(4);
+                            grid.Rows[0].Height = 40;
+                            PdfGrid row = new();
+                            
+                            grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                            grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+                            grid.Rows[0].Cells[3].Style.Borders = HideBorder(true);
+
+                            #endregion
+                            mainGrid.Rows[4].Cells[2].Value = grid;
+                        }
+                       
+                        #endregion
+                    }
+                    {
+                        #region ThirdColumn
+
+                        PdfGrid grid = new();
+                        grid.Rows.Add();
+                        grid.Columns.Add(1);
+                        grid.Rows[0].Height = 40;
+
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        #endregion 
+                        
+                        mainGrid.Rows[1].Cells[3].Value = grid;
+                    }
+
+                    #endregion
+                }
+                {
+                    #region Bottom
+
+                    mainGrid.Rows.Add();
+                    {
+                        #region FirstColumn
+
+                        PdfGrid grid = new();
+                        grid.Rows.Add();
+                        grid.Columns.Add(2);
+
+                        grid.Rows[0].Height = 40;
+                        grid.Rows[0].Cells[0].Value = "Suma\nobjętości\nstrumienia\npowietrza";
+                        grid.Columns[0].Width = 50;
+                        grid.Rows[0].Cells[0].Style = CellStyle(9, true);
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder(false, false, true);
+
+                        PdfGrid rightSideGrid = new();
+                        rightSideGrid.Rows.Add();
+                        rightSideGrid.Rows.Add();
+                        rightSideGrid.Columns.Add(1);
+
+                        rightSideGrid.Rows[0].Height = 19;
+                        rightSideGrid.Rows[1].Height = 21;
+                        rightSideGrid.Rows[0].Cells[0].Value = "ZMIERZONA";
+                        rightSideGrid.Rows[1].Cells[0].Value = "WYMAGANA\nPN/83-B/03430";
+                        rightSideGrid.Rows[0].Cells[0].Style = CellStyle(8, true, PdfTextAlignment.Center, 0, 0, 2);
+                        rightSideGrid.Rows[1].Cells[0].Style = CellStyle(8, true, PdfTextAlignment.Center, 0, 0, 2);
+                        
+                        rightSideGrid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        rightSideGrid.Rows[1].Cells[0].Style.Borders = HideBorder(false, true);
+
+                        grid.Rows[0].Cells[1].Value = rightSideGrid;
+                        grid.Rows[0].Cells[1].Style.Borders = HideBorder();
+
+                        #endregion
+
+                        mainGrid.Rows[5].Cells[0].Value = grid;
+                    }
+                    {
+                        #region SecondColumn
+
+                        PdfGrid grid = new();
+
+                        grid.Rows.Add();
+                        grid.Rows.Add();
+
+                        grid.Rows[0].Height = 20;
+                        grid.Rows[1].Height = 20;
+                        
+                        grid.Columns.Add(1);
+
+                        PdfGrid topRowGrid = new();
+                        topRowGrid.Columns.Add(2);
+                        topRowGrid.Rows.Add();
+                        topRowGrid.Rows[0].Height = 17;
+                      //  topRowGrid.Columns[0].Width = 63;
+                        topRowGrid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        topRowGrid.Rows[0].Cells[1].Style.Borders = HideBorder();
+
+                        grid.Rows[0].Cells[0].Value = topRowGrid;
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        grid.Rows[1].Cells[0].Style.Borders = HideBorder(false, true);
+                        #endregion
+
+                        mainGrid.Rows[5].Cells[1].Value = grid;
+                    }
+                    {
+                        #region ThirdColumn
+
+                        PdfGrid grid = new();
+                        grid.Rows.Add();
+                        grid.Columns.Add(2);
+                        grid.Rows[0].Height = 40;
+                        
+                        grid.Columns[0].Width = 64;
+                        grid.Columns[1].Width = 63;
+
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                        
+                        #endregion
+
+                        mainGrid.Rows[5].Cells[2].Value = grid;
+                    }
+
+                    #endregion
+                }
