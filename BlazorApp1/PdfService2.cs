@@ -10,15 +10,10 @@ namespace BlazorApp1
 {
     public class PdfService2
     {
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private PdfPage Page;
 
-        public PdfService2(IWebHostEnvironment webHostEnvironment)
-        {
-            _webHostEnvironment = webHostEnvironment;
-        }
-
-        private PdfGridCellStyle SetCellStyle(int size, bool bold = false,
-            PdfTextAlignment positions = PdfTextAlignment.Left, int paddingLeft = 0, 
+        private PdfGridCellStyle CellStyle(int size, bool bold = false,
+            PdfTextAlignment positions = PdfTextAlignment.Center, int paddingLeft = 0,
             int paddingRight = 0, int paddingTop = 0, int paddingBottom = 0)
         {
             var style = new PdfGridCellStyle()
@@ -36,469 +31,595 @@ namespace BlazorApp1
 
             return style;
         }
+
+        private PdfBorders HideBorder(bool left = false, bool top = false, bool right = false, bool bottom = false)
+        {
+            return new()
+            {
+                Left = left ? new(Color.Black) : new(Color.Transparent),
+                Top = top ? new(Color.Black) : new(Color.Transparent),
+                Right = right ? new(Color.Black) : new(Color.Transparent),
+                Bottom = bottom ? new(Color.Black) : new(Color.Transparent),
+            };
+        }
+
         private PdfFont FontSize(int size, bool bold = false)
         {
-            var font = new PdfStandardFont(PdfFontFamily.Helvetica, size);
+            var font = new PdfStandardFont(PdfFontFamily.TimesRoman, size);
             if (bold)
-                font = new PdfStandardFont(PdfFontFamily.Helvetica, size, PdfFontStyle.Bold);
-            
+                font = new PdfStandardFont(PdfFontFamily.TimesRoman, size, PdfFontStyle.Bold);
+
             font.SetTextEncoding(Encoding.GetEncoding("Windows-1250"));
             return font;
         }
-        
-        public MemoryStream CreatePDF(RootProduction root)
+
+        private PdfGridLayoutResult GenerateInput(int width, PointF position, int height = 10, string text = "")
         {
-           PdfDocument pdfDocument = new PdfDocument();
-            PdfPage pdfPage = pdfDocument.Pages.Add();
-            
-            #region FOOTER
-            RectangleF bounds = new RectangleF(0, 0, pdfDocument.Pages[0].GetClientSize().Width, 50);
-            PdfPageTemplateElement footer = new PdfPageTemplateElement(bounds);
-            PdfGrid pdfGrid = new PdfGrid();
-            pdfGrid.Rows.Add();
-            pdfGrid.Columns.Add(9);
-          
-            pdfGrid.Columns[8].Width = 90;
-            pdfGrid.Rows[0].Height = 14;
+            PdfGrid grid = new();
+            grid.Rows.Add();
+            grid.Columns.Add(1);
 
-            PdfPageNumberField pageNumber = new PdfPageNumberField(FontSize(7));
-            PdfPageCountField count = new PdfPageCountField(FontSize(7));
-            PdfCompositeField compositeField = new PdfCompositeField(FontSize(9, true), "Strona {0} z {1}", pageNumber, count);
-            compositeField.Bounds = footer.Bounds;
-            compositeField.Draw(footer.Graphics, new PointF(445, 21));
-            
-            pdfGrid.Rows[0].Cells[0].Value = "Zlecenie";
-            pdfGrid.Rows[0].Cells[0].Style = SetCellStyle(9, false, PdfTextAlignment.Center);
-            
-            pdfGrid.Rows[0].Cells[1].Value = $"{ root.ordernumber }";
-            pdfGrid.Rows[0].Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            pdfGrid.Rows[0].Cells[1].Style = SetCellStyle(9, false, PdfTextAlignment.Center);
+            grid.Rows[0].Height = height;
+            grid.Columns[0].Width = width;
+            grid.Rows[0].Cells[0].Value = text;
 
-            pdfGrid.Rows[0].Cells[2].Value = "Nr kompl";
-            pdfGrid.Rows[0].Cells[2].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            pdfGrid.Rows[0].Cells[2].Style = SetCellStyle(9, false, PdfTextAlignment.Center);
+            return grid.Draw(Page, position);
+        }
 
-            pdfGrid.Rows[0].Cells[3].Value = $"{ root.collectionnumber }";
-            pdfGrid.Rows[0].Cells[3].Style = SetCellStyle(9, false, PdfTextAlignment.Center);
+        public async Task<MemoryStream> CreatePDF()
+        {
+            PdfDocument documents = new PdfDocument();
+            Page = documents.Pages.Add();
+            PdfGraphics Graphics = Page.Graphics;
 
-            pdfGrid.Rows[0].Cells[4].Value = "Wystawił";
-            pdfGrid.Rows[0].Cells[4].Style = SetCellStyle(9, true, PdfTextAlignment.Center);
+            #region TITLE
 
-            pdfGrid.Rows[0].Cells[5].Value = $"{ root.createdby }";
-            pdfGrid.Rows[0].Cells[5].Style = SetCellStyle(9, false, PdfTextAlignment.Center);
-
-            pdfGrid.Rows[0].Cells[6].Value = "Data";
-            pdfGrid.Rows[0].Cells[6].Style = SetCellStyle(9, false, PdfTextAlignment.Center);
-
-            pdfGrid.Rows[0].Cells[7].Value = $"{ root.creasationdate }";
-            pdfGrid.Rows[0].Cells[7].Style = SetCellStyle(9, false, PdfTextAlignment.Center);
-
-            pdfGrid.Rows[0].Cells[8].Style = SetCellStyle(9, false, PdfTextAlignment.Center);
-
-            pdfGrid.Draw(footer.Graphics, new PointF(0, 20));
-            pdfDocument.Template.Bottom = footer;
+            Graphics.DrawString("Protokół sprawdzenia technicznej sprawności", FontSize(13, true), PdfBrushes.Black,
+                new PointF(130, 37));
 
             #endregion
-            #region HEADER
-            PdfGrid headerGrid = new PdfGrid();
-            headerGrid.Rows.Add();
-            headerGrid.Columns.Add(3);
-            
-            headerGrid.Rows[0].Height = 50;
-           
 
-            headerGrid.Columns[0].Width = 93f;
-            headerGrid.Columns[1].Width = 275f;
+            #region SmallTitle
 
-            PdfGrid headerMainPartGrid = new();
-            headerMainPartGrid.Rows.Add();
-            headerMainPartGrid.Columns.Add(4);
-            headerMainPartGrid.Rows[0].Height = 50;
+            Graphics.DrawString("przewodów kominowych i instalacji gazowej", FontSize(8), PdfBrushes.Black, new PointF(185, 60));
+            Graphics.DrawString("wykonany na zlecenie", FontSize(8, true), PdfBrushes.Black, new PointF(210, 72));
+            
+            Graphics.DrawString("Spółdzielni Mieszkaniowej \"Twoje Osiedle\"", FontSize(7), PdfBrushes.Black, new PointF(185, 93));
 
-            headerMainPartGrid.Columns[0].Width = 38;
-            headerMainPartGrid.Columns[1].Width = 180;
-            headerMainPartGrid.Columns[3].Width = 60;
-            
-            headerMainPartGrid.Rows[0].Cells[0].Value = "WKS";
-            headerMainPartGrid.Rows[0].Cells[0].Style = SetCellStyle(11, false, PdfTextAlignment.Left, 2, 0, 12, 0);
-            
-            headerMainPartGrid.Rows[0].Cells[1].Value = "ZLECENIE PRODUKCYJNE WYRÓB WŁASNY";
-            headerMainPartGrid.Rows[0].Cells[1].Style = SetCellStyle(11, true, PdfTextAlignment.Left, 2, 0, 12, 0);
-            
-            PdfGrid nrPickingGrid = new();
-            nrPickingGrid.Columns.Add();
-            nrPickingGrid.Rows.Add();
-            nrPickingGrid.Rows.Add();
-            nrPickingGrid.Rows.Add();
-
-            nrPickingGrid.Rows[0].Height = 8;
-            nrPickingGrid.Rows[1].Height = 30;
-            nrPickingGrid.Rows[2].Height = 20;
-            
-            nrPickingGrid.Rows[1].Cells[0].Value = "NR. KOMPL";
-            nrPickingGrid.Rows[1].Cells[0].Style = SetCellStyle(9, true, PdfTextAlignment.Center, -5, 0, 8, 0);
-            
-            headerMainPartGrid.Rows[0].Cells[3].Value = nrPickingGrid;
-            
-            headerGrid.Rows[0].Cells[0].Style.Borders.Right = new PdfPen(PdfBrushes.Transparent);
-            headerGrid.Rows[0].Cells[1].Style.Borders.Left = new PdfPen(PdfBrushes.Transparent);
-            headerMainPartGrid.Rows[0].Cells[0].Style.Borders.All = new PdfPen(PdfBrushes.Transparent);
-            headerMainPartGrid.Rows[0].Cells[1].Style.Borders.All = new PdfPen(PdfBrushes.Transparent);
-            headerMainPartGrid.Rows[0].Cells[2].Style.Borders.All = new PdfPen(PdfBrushes.Transparent);
-            headerMainPartGrid.Rows[0].Cells[3].Style.Borders.All = new PdfPen(PdfBrushes.Transparent);
-            nrPickingGrid.Rows[0].Cells[0].Style.Borders.All = new PdfPen(PdfBrushes.Transparent);
-            nrPickingGrid.Rows[1].Cells[0].Style.Borders.Right = new PdfPen(PdfBrushes.Transparent);
-            nrPickingGrid.Rows[2].Cells[0].Style.Borders.All = new PdfPen(PdfBrushes.Transparent);
-            
-            PdfGraphics logoImage = pdfPage.Graphics;
-            FileStream image = new FileStream(_webHostEnvironment.WebRootPath + "//logo-with-bg.png", FileMode.Open, FileAccess.Read);
-            PdfBitmap bitmapImage = new PdfBitmap(image);
-            SizeF imageSize = new SizeF(87, 22);
-            PointF imagelocaion = new PointF(5, 15); 
-            logoImage.DrawImage(bitmapImage, imagelocaion, imageSize);
-
-            headerGrid.Rows[0].Cells[1].Value = headerMainPartGrid;
-            headerGrid.Rows[0].Cells[2].Value = root.collectionnumber;
-            headerGrid.Rows[0].Cells[2].Style = SetCellStyle(25, true,PdfTextAlignment.Center, 0, 0, 10, 0);
             #endregion
 
-            #region SECOND PART
-            PdfGrid second = new PdfGrid();
-            second.Columns.Add(1);
-            second.Rows.Add();
-            second.Columns[0].Width = 265;
-            PdfGrid secondFirstPart = new PdfGrid();
-            secondFirstPart.Columns.Add(2);
+            #region FirstChapter
 
-            PdfGridRow secondRowFirstPart = secondFirstPart.Rows.Add();
+            var firstAndLastNameInput = GenerateInput(70, new PointF(50, 120));
+            Graphics.DrawString("(Nazwisko i imię użytkownika)", FontSize(6), PdfBrushes.Black,
+                new PointF(firstAndLastNameInput.Bounds.Left - 5, firstAndLastNameInput.Bounds.Bottom + 2));
 
-            PdfGridCellStyle pdfGridCellStyle = new PdfGridCellStyle();
-            pdfGridCellStyle.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            pdfGridCellStyle.Borders.All = new PdfPen(Color.Transparent);
-
-            secondRowFirstPart.Height = 32;
-            secondRowFirstPart.Cells[0].Value = "Numer zlecenia";
-            secondRowFirstPart.Cells[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            secondRowFirstPart.Cells[0].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11, PdfFontStyle.Bold);
-
-            secondRowFirstPart.Cells[1].Value = root.ordernumber;
-            secondRowFirstPart.Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            secondRowFirstPart.Cells[1].Style.CellPadding = new PdfPaddings(0, 0, 12, 0);
-
-            PdfGridRow secondRowFirstPart2 = secondFirstPart.Rows.Add();
-            secondRowFirstPart2.Height = 15;
-            secondRowFirstPart2.Cells[0].Value = "Projekt";
-            secondRowFirstPart2.Cells[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            secondRowFirstPart2.Cells[0].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 12);
-
-            secondRowFirstPart2.Cells[1].Value = root.projectwithclient;
-            secondRowFirstPart2.Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            secondRowFirstPart2.Cells[1].Style.CellPadding = new PdfPaddings(0, 0, 2, 0);
-
-
-            second.Rows[0].Cells[0].Value = secondFirstPart;
-            second.Rows[0].Cells[0].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            second.Rows[0].Cells[0].Style.Borders.All = new PdfPen(Color.Transparent);
-            secondFirstPart.Columns[0].Width = 55;
-            #endregion
-
-            #region BARCODE
-            PdfCode39Barcode barcode = new PdfCode39Barcode();
-            barcode.BarHeight = 23;
-            barcode.TextColor = Color.White;
-            barcode.Text = $"{root.ordernumber}$";
-            barcode.Draw(pdfPage, new PointF(270, 60));
-            #endregion
-
-            #region THIRD PART
-            PdfGrid thirdGrid = new PdfGrid();
-            thirdGrid.Columns.Add(4);
-            thirdGrid.Columns[0].Width = 175;
-            thirdGrid.Columns[1].Width = 32;
-            thirdGrid.Columns[2].Width = 195;
-            thirdGrid.Columns[3].Width = 38;
-            PdfGridRow thirdGridFirstRow = thirdGrid.Rows.Add();
-
-            thirdGridFirstRow.Height = 18;
-
-            thirdGridFirstRow.Cells[0].Value = "Indeks wyrobu wlasnego";
-            thirdGridFirstRow.Cells[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            thirdGridFirstRow.Cells[0].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 14, PdfFontStyle.Bold);
-
-            thirdGridFirstRow.Cells[1].Value = "Rev";
-            thirdGridFirstRow.Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            thirdGridFirstRow.Cells[1].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 12);
-
-            thirdGridFirstRow.Cells[2].Value = "Nazwa wyrobu złożonego";
-            thirdGridFirstRow.Cells[2].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            thirdGridFirstRow.Cells[2].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11, PdfFontStyle.Bold);
-
-            thirdGridFirstRow.Cells[3].Value = "Ilość";
-            thirdGridFirstRow.Cells[3].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            thirdGridFirstRow.Cells[3].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 9, PdfFontStyle.Bold);
-
-            thirdGrid.Rows.Add();
-            thirdGrid.Rows[1].Cells[0].Value = root.goalindex;
-            thirdGrid.Rows[1].Cells[1].Value = root.goalrevision;
-            thirdGrid.Rows[1].Cells[2].Value = root.goalname;
-            thirdGrid.Rows[1].Cells[3].Value = root.goalquantity;
-            #endregion
-
-            #region QRCODE
-            PdfQRBarcode qrCode = new PdfQRBarcode();
-            qrCode.XDimension = 3;
-            qrCode.Text = $"{root.ordernumber}";
-            qrCode.Draw(pdfPage, new Point(447, 85), new SizeF(72, 72));
-            #endregion
-
-            #region FIRTH PART
-            PdfGrid firth = new PdfGrid();
-            firth.Columns.Add(4);
-            firth.Columns[0].Width = 140;
-            firth.Columns[1].Width = 60;
-            firth.Columns[2].Width = 250;
-            firth.Columns[3].Width = 65;
-
-            PdfGridRow firthRow = firth.Rows.Add();
-            firthRow.Cells[0].Value = "Indeks półwyrobu";
-            firthRow.Cells[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            firthRow.Cells[0].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 14);
-
-            firthRow.Cells[1].Value = "Rev";
-            firthRow.Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            firthRow.Cells[1].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
-
-            firthRow.Cells[2].Value = "Nazwa półwyrobu";
-            firthRow.Cells[2].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            firthRow.Cells[2].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 13);
-
-            firthRow.Cells[3].Value = "Iłość";
-            firthRow.Cells[3].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-            firthRow.Cells[3].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
+            var identificate = GenerateInput(75, new PointF(150, 120));
+            Graphics.DrawString("(Identyfikator)", FontSize(6), PdfBrushes.Black,
+                new PointF(identificate.Bounds.Left + 19, identificate.Bounds.Bottom + 2));
             
-            PdfGridRow secondRow = firth.Rows.Add();
-            secondRow.Cells[0].Value = root.productlindex;
-            secondRow.Cells[1].Value = root.productrevision;
-            secondRow.Cells[2].Value = root.productname;
-            secondRow.Cells[3].Value = root.productquantity;
+            var address = GenerateInput(75, new PointF(240, 120));
+            Graphics.DrawString("(Ulica, nr domu, nr mieszkania)", FontSize(6), PdfBrushes.Black,
+                new PointF(address.Bounds.Left, address.Bounds.Bottom + 2));
             
-            PdfGrid firthSec = new PdfGrid();
-            firthSec.Columns.Add(3);
-            firthSec.Columns[1].Width = 200;
-            PdfGridRow firthColumnSecondPart = firthSec.Rows.Add();
-            firthColumnSecondPart.Cells[0].Value = "Wymiar";
-            firthColumnSecondPart.Cells[0].Style.Borders.Top = new PdfPen(Color.Transparent);
-            firthColumnSecondPart.Cells[0].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            firthColumnSecondPart.Cells[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            var phoneNumber = GenerateInput(75, new PointF(330, 120));
+            Graphics.DrawString("Nr telefonu", FontSize(6), PdfBrushes.Black,
+                new PointF(phoneNumber.Bounds.Left + 22, phoneNumber.Bounds.Bottom + 2));
 
-            firthColumnSecondPart.Cells[1].Value = "Material";
-            firthColumnSecondPart.Cells[1].Style.Borders.Top = new PdfPen(Color.Transparent);
-            firthColumnSecondPart.Cells[1].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            firthColumnSecondPart.Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+            var QCDate = GenerateInput(70, new PointF(420, 120));
+            Graphics.DrawString("Data sprawdzania", FontSize(6), PdfBrushes.Black,
+                new PointF(QCDate.Bounds.Left + 17, QCDate.Bounds.Bottom + 2));
 
-            firthColumnSecondPart.Cells[2].Value = "Uwagi";
-            firthColumnSecondPart.Cells[2].Style.Borders.Top = new PdfPen(Color.Transparent);
-            PdfGridRow firthColumnSecondPartValue = firthSec.Rows.Add();
-            firthColumnSecondPartValue.Height = 13;
-            firthColumnSecondPartValue.Cells[0].Value = root.drawingdimensions;
-            firthColumnSecondPartValue.Cells[1].Value = root.drawingmaterial;
-            firthColumnSecondPartValue.Cells[2].Value = root.drawingpath;
-            
-            var t = firth.Draw(pdfPage, new Point(0, 180));
-            var x = firthSec.Draw(pdfPage, new PointF(0, t.Bounds.Bottom));
-            
             #endregion
 
-            #region MATERIAL
-            PdfGraphics graphics = pdfPage.Graphics;
-            PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 17, PdfFontStyle.Bold);
-            graphics.DrawString("Materials", font, PdfBrushes.Black, new PointF(0, 255));
+            #region SecondChapter
 
-            PdfGrid materialGrid = new PdfGrid();
-            List<Material> Materials = new();
+            GenerateInput(63, new PointF(112, 145));
+            Graphics.DrawString("Temperatura zewnętrzna", FontSize(8), PdfBrushes.Black, new PointF(16, 147));
 
-            Materials.Add(new Material() { Name = "asd" });
+            GenerateInput(70, new PointF(285, 145));
+            Graphics.DrawString("Temperatura wewnętrzna", FontSize(8), PdfBrushes.Black, new PointF(190, 147));
 
-            IEnumerable<Material> dataTable = Materials;
-            materialGrid.DataSource = dataTable;
+            GenerateInput(40, new PointF(430, 145));
+            Graphics.DrawString("Ilość nawiewników", FontSize(8), PdfBrushes.Black, new PointF(365, 147));
 
-            if (materialGrid.DataSource is not null)
+            #endregion
+
+            #region GridChapter
+
+            PdfGrid mainGrid = new();
+            mainGrid.Columns.Add(5);
+            mainGrid.Columns[3].Width = 17;
+
             {
-                for (int i = 0; i < materialGrid.Rows.Count; i++)
+                #region GridHeader
+
+                mainGrid.Rows.Add();
+                mainGrid.Rows[0].Height = 55;
+
                 {
-                    materialGrid.Rows[i].Height = 17;
-                }
-            }
+                    #region GridHeaderFirstChapter
 
-            materialGrid.Columns[0].Width = 35;
-            materialGrid.Columns[1].Width = 120;
-            materialGrid.Columns[2].Width = 200;
-            materialGrid.Columns[3].Width = 45;
-            materialGrid.Columns[4].Width = 25;
-            materialGrid.Columns[5].Width = 90;
+                    PdfGrid grid = new PdfGrid();
+                    grid.Columns.Add(3);
+                    grid.Columns[0].Width = 50;
+                    grid.Columns[1].Width = 45;
+                    grid.Columns[2].Width = 33;
 
-            PdfGridRow pdfGridHeader = materialGrid.Headers[0];
-            pdfGridHeader.Cells[0].Value = "Nr";
-            pdfGridHeader.Cells[0].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11, PdfFontStyle.Bold);
-            pdfGridHeader.Cells[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                    grid.Rows.Add();
+                    grid.Rows[0].Height = 55;
+                    grid.Rows[0].Cells[0].Style.Borders = HideBorder(false, false, true);
+                    grid.Rows[0].Cells[1].Style.Borders = HideBorder(false, false, true);
+                    grid.Rows[0].Cells[2].Style.Borders = HideBorder();
 
-            pdfGridHeader.Cells[1].Value = "Index materialu";
-            pdfGridHeader.Cells[1].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11);
-            pdfGridHeader.Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                    {
+                        #region FirstColumn
 
-            pdfGridHeader.Cells[2].Value = "Nazwa materialu";
-            pdfGridHeader.Cells[2].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11);
-            pdfGridHeader.Cells[2].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                        PdfGrid ads = new();
 
-            pdfGridHeader.Cells[3].Value = "Ilość";
-            pdfGridHeader.Cells[3].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11);
-            pdfGridHeader.Cells[3].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                        #endregion
+                    }
 
-            pdfGridHeader.Cells[4].Value = "JM";
-            pdfGridHeader.Cells[4].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11);
-            pdfGridHeader.Cells[4].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                    {
+                        #region SecondColumn
 
-            pdfGridHeader.Cells[5].Value = "Uwagi";
-            pdfGridHeader.Cells[5].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 11);
-            pdfGridHeader.Cells[5].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                        PdfGrid headerSecondColumnRowAdd = new();
+                        headerSecondColumnRowAdd.Columns.Add(1);
+                        headerSecondColumnRowAdd.Rows.Add();
+                        headerSecondColumnRowAdd.Rows.Add();
 
-            int getMaterialSize = Materials.Count * 17;
+                        headerSecondColumnRowAdd.Rows[0].Height = 44;
+                        headerSecondColumnRowAdd.Rows[1].Height = 9;
+                        headerSecondColumnRowAdd.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        headerSecondColumnRowAdd.Rows[1].Cells[0].Style = CellStyle(8);
+                        headerSecondColumnRowAdd.Rows[1].Cells[0].Style.Borders = HideBorder(false, true, false, false);
+                        headerSecondColumnRowAdd.Rows[1].Cells[0].Value = "m3/h";
 
-            var e = materialGrid.Draw(pdfPage, new Point(0, 280));
-            pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
+                        grid.Rows[0].Cells[1].Value = headerSecondColumnRowAdd;
 
-            #endregion
+                        #endregion
+                    }
 
-            #region Operation
-            PdfGraphics operationGraphics = pdfPage.Graphics;
-            PdfFont operationFort = new PdfStandardFont(PdfFontFamily.Helvetica, 17, PdfFontStyle.Bold);
-            operationGraphics.DrawString("Operations", operationFort, PdfBrushes.Black, new PointF(0, e.Bounds.Bottom + 16));
+                    {
+                        #region ThirdColumn
 
-            PdfGrid operationGrid = new PdfGrid();
-            
-            IEnumerable<Operation> opearationsTable = root.operations;
-            operationGrid.DataSource = opearationsTable;
+                        PdfGrid headerSecondColumnRowAdd = new();
+                        headerSecondColumnRowAdd.Columns.Add(1);
+                        headerSecondColumnRowAdd.Rows.Add();
+                        headerSecondColumnRowAdd.Rows.Add();
+                        headerSecondColumnRowAdd.Rows.Add();
 
-            if (operationGrid.DataSource is not null)
-            {
-                for (int i = 0; i < operationGrid.Rows.Count; i++)
-                {
-                    operationGrid.Rows[i].Height = 17;
-                }
-            }
+                        headerSecondColumnRowAdd.Rows[0].Height = 35;
+                        headerSecondColumnRowAdd.Rows[1].Height = 9;
+                        headerSecondColumnRowAdd.Rows[2].Height = 9;
 
-            operationGrid.Columns[0].Width = 22;
-            operationGrid.Columns[1].Width = 62;
-            operationGrid.Columns[2].Width = 62;
-            operationGrid.Columns[3].Width = 58;
-            operationGrid.Columns[4].Width = 62;
-            operationGrid.Columns[5].Width = 52;
-            operationGrid.Columns[6].Width = 52;
-            operationGrid.Columns[7].Width = 22;
-            operationGrid.Columns[8].Width = 58;
-            operationGrid.Columns[9].Width = 62;
+                        headerSecondColumnRowAdd.Rows[0].Cells[0].Style.Borders = HideBorder();
 
-            PdfGridRow operationGridHeader = operationGrid.Headers[0];
+                        headerSecondColumnRowAdd.Rows[1].Cells[0].Style = CellStyle(8);
+                        headerSecondColumnRowAdd.Rows[1].Cells[0].Style.Borders = HideBorder(false, true);
+                        headerSecondColumnRowAdd.Rows[1].Cells[0].Value = "ϕ cm";
 
-            operationGridHeader.Cells[0].Value = "Nr";
-            operationGridHeader.Cells[0].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            operationGridHeader.Cells[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                        headerSecondColumnRowAdd.Rows[2].Cells[0].Style = CellStyle(8);
+                        headerSecondColumnRowAdd.Rows[2].Cells[0].Style.Borders = HideBorder(false, true);
+                        headerSecondColumnRowAdd.Rows[2].Cells[0].Value = "cm";
 
-            operationGridHeader.Cells[1].Value = "Operacja";
-            operationGridHeader.Cells[1].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
-            operationGridHeader.Cells[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                        grid.Rows[0].Cells[2].Value = headerSecondColumnRowAdd;
 
-            operationGridHeader.Cells[2].Value = "Stanowisko";
-            operationGridHeader.Cells[2].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
-            operationGridHeader.Cells[2].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                        #endregion
+                    }
 
-            operationGridHeader.Cells[3].Value = "Czas pl.";
-            operationGridHeader.Cells[3].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            operationGridHeader.Cells[3].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
 
-            operationGridHeader.Cells[4].Value = "Term zak.";
-            operationGridHeader.Cells[4].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            operationGridHeader.Cells[4].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                    #region TextRotation
 
-            operationGridHeader.Cells[5].Value = "Czas rz.";
-            operationGridHeader.Cells[5].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            operationGridHeader.Cells[5].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-
-            operationGridHeader.Cells[6].Value = "Inicjały";
-            operationGridHeader.Cells[6].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            operationGridHeader.Cells[6].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-
-            operationGridHeader.Cells[7].Value = "QC";
-            operationGridHeader.Cells[7].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
-            operationGridHeader.Cells[7].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-
-            operationGridHeader.Cells[8].Value = "Sprawdził";
-            operationGridHeader.Cells[8].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10);
-            operationGridHeader.Cells[8].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-
-            operationGridHeader.Cells[9].Value = "Uwagi";
-            operationGridHeader.Cells[9].Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold);
-            operationGridHeader.Cells[9].StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
-
-            int getOperationSize = root.operations.Count * 17;
-            operationGrid.Draw(pdfPage, new PointF(0, e.Bounds.Bottom + 38));
-            pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
-            #endregion
-
-            #region SECOND_LINE
-
-            for (int i = 0; i < 60; i++)
-            {
-                if(i % 2 != 0)
-                {
-                    PdfPen pen = new PdfPen(PdfBrushes.Black, 5f);
-                    PointF point1 = new PointF(i * 10, t.Bounds.Bottom + 40);
-                    PointF point2 = new PointF(i * 10 + 10, t.Bounds.Bottom + 40);
-                    pdfPage.Graphics.DrawLine(pen, point1, point2);
-                }
-            }
-            pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
-            #endregion
-
-            PdfGridLayoutResult otherResult = null;
-            for (int i = 0; i < root.others.Count; i++)
-            {
-                PdfGraphics otherGraphics = pdfPage.Graphics;
-                PdfFont othersOperationFort = new PdfStandardFont(PdfFontFamily.Helvetica, 17, PdfFontStyle.Bold);
-                otherGraphics.DrawString(root.others[0].Title, othersOperationFort, PdfBrushes.Black, new PointF(0, t.Bounds.Bottom + 55));
-                for (int u = 0; u < root.others[i].Values.Count; u++)
-                {
-                    PdfGrid othersGrid = new();
-                    othersGrid.Rows.Add();
-                    othersGrid.Rows.Add();
-                    othersGrid.Columns.Add(2);
-
-                    othersGrid.Rows[0].Cells[0].Value = "Nazwa";
-                    othersGrid.Rows[0].Cells[0].Style = SetCellStyle(11, true, PdfTextAlignment.Center);
-            
-                    othersGrid.Rows[0].Cells[1].Value = "Wartość";
-                    othersGrid.Rows[0].Cells[1].Style = SetCellStyle(11, true, PdfTextAlignment.Center);
-            
-                    othersGrid.Rows[1].Cells[0].Value = root.others[i].Values[u].Name;
-                    othersGrid.Rows[1].Cells[0].Style = SetCellStyle(11, false, PdfTextAlignment.Center);
-            
-                    othersGrid.Rows[1].Cells[1].Value = root.others[i].Values[u].StringValue;
-                    othersGrid.Rows[1].Cells[1].Style = SetCellStyle(11, true, PdfTextAlignment.Center);
+                    PdfGraphicsState state = Page.Graphics.Save();
+                    Page.Graphics.TranslateTransform(100,100);
+                    Page.Graphics.RotateTransform(-90);
+                    Page.Graphics.DrawString("  Przepływ w\npomieszczeniu", FontSize(6), PdfBrushes.Black, new PointF(-109, -83));
+                    Page.Graphics.DrawString( "  Wymagania\nPN-83/B-03430", FontSize(6), PdfBrushes.Black, new PointF(-107, -35));
                     
-                    if(u == 0)
-                        otherResult = othersGrid.Draw(pdfPage, new PointF(0, (t.Bounds.Bottom + 80)));
-                    else
-                        otherResult = othersGrid.Draw(pdfPage, new PointF(0, (otherResult.Bounds.Bottom + 40)));
-                    pdfPage = pdfDocument.Pages[pdfDocument.Pages.Count - 1];
+                    Page.Graphics.DrawString( " Wymiary\n   kratek", FontSize(6), PdfBrushes.Black, new PointF(-96, 5));
+                    
+                    Page.Graphics.Restore(state);
+
+                    #endregion
+                    
+                    #endregion
+
+                    mainGrid.Rows[0].Cells[0].Value = grid;
+                }
+                {
+                    #region GridHeaderSecondChapter
+
+                    PdfGrid grid = new PdfGrid();
+                    grid.Columns.Add(1);
+                    grid.Rows.Add();
+                    grid.Rows.Add();
+
+                    grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                    grid.Rows[1].Cells[0].Style.Borders = HideBorder(false, true);
+                    grid.Rows[0].Height = 26;
+                    grid.Rows[1].Height = 35;
+
+                    {
+                        #region TopSideGrid
+
+                        grid.Rows[0].Cells[0].Value = "Strumienie powietrza w kratkach\nkanałów wentylacyjnych";
+                        grid.Rows[0].Cells[0].Style = CellStyle(9);
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+
+                        #endregion
+                    }
+                    {
+                        #region BottomSideGrid
+
+                        PdfGrid bottomGrid = new();
+                        bottomGrid.Rows.Add();
+                        bottomGrid.Columns.Add(2);
+                        
+                        bottomGrid.Rows[0].Height = 32;
+                        bottomGrid.Columns[0].Width = 63;
+                        
+                        bottomGrid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        bottomGrid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                        
+                        {
+                            #region BottomLeftSide
+
+                            PdfGrid leftSideGrid = new();
+                            leftSideGrid.Columns.Add(1);
+                            leftSideGrid.Rows.Add();
+                            leftSideGrid.Rows.Add();
+
+                            leftSideGrid.Rows[0].Cells[0].Style = CellStyle(7, false, PdfTextAlignment.Center, 0, 0, 2);
+                            leftSideGrid.Rows[0].Cells[0].Value = "Okna zamknięte";
+                            leftSideGrid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                            leftSideGrid.Rows[1].Cells[0].Style.Borders = HideBorder();
+                            leftSideGrid.Rows[0].Height = 17;
+                            leftSideGrid.Rows[1].Height = 16;
+
+                            PdfGrid bottom = new();
+                            bottom.Columns.Add(2);
+                            bottom.Rows.Add();
+                            bottom.Rows[0].Height = 15;
+                            bottom.Rows[0].Cells[0].Value = "m/s";
+                            bottom.Rows[0].Cells[1].Value = "m3/h";
+                            bottom.Rows[0].Cells[0].Style = CellStyle(8);
+                            bottom.Rows[0].Cells[1].Style = CellStyle(8);
+                            bottom.Columns[0].Width = 29;
+                            bottom.Rows[0].Cells[0].Style.Borders = HideBorder(false, true);
+                            bottom.Rows[0].Cells[1].Style.Borders = HideBorder(true, true);
+
+                            leftSideGrid.Rows[1].Cells[0].Value = bottom;
+
+                            #endregion
+
+                            #region BottomRightSide
+
+                            PdfGrid rightSideGrid = new();
+                            rightSideGrid.Columns.Add(1);
+                            rightSideGrid.Rows.Add();
+                            rightSideGrid.Rows.Add();
+
+                            rightSideGrid.Rows[0].Cells[0].Style = CellStyle(7);
+                            rightSideGrid.Rows[0].Cells[0].Value = "Okna (mikrouchył\ndo 10 mm)";
+                            rightSideGrid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                            rightSideGrid.Rows[1].Cells[0].Style.Borders = HideBorder();
+                            rightSideGrid.Rows[0].Height = 17;
+                            rightSideGrid.Rows[1].Height = 16;
+
+                            PdfGrid bottomRight = new();
+                            bottomRight.Columns.Add(2);
+                            bottomRight.Columns[0].Width = 30.5f;
+                            bottomRight.Rows.Add();
+                            bottomRight.Rows[0].Height = 15;
+                            bottomRight.Rows[0].Cells[0].Value = "m/s";
+                            bottomRight.Rows[0].Cells[1].Value = "m3/h";
+                            bottomRight.Rows[0].Cells[0].Style = CellStyle(8);
+                            bottomRight.Rows[0].Cells[1].Style = CellStyle(8);
+                            bottomRight.Rows[0].Cells[0].Style.Borders = HideBorder(false,true);
+                            bottomRight.Rows[0].Cells[1].Style.Borders = HideBorder(true, true);
+
+                            rightSideGrid.Rows[1].Cells[0].Value = bottomRight;
+
+                            #endregion
+                            
+                            bottomGrid.Rows[0].Cells[0].Value = leftSideGrid;
+                            bottomGrid.Rows[0].Cells[1].Value = rightSideGrid;
+                        }
+                        grid.Rows[1].Cells[0].Value = bottomGrid;
+
+                        #endregion
+                    }
+
+                    #endregion
+
+                    mainGrid.Rows[0].Cells[1].Value = grid;
+                }
+                {
+                    #region GridHeaderThirdChapter
+
+                    PdfGrid grid = new();
+                    grid.Rows.Add();
+                    grid.Rows.Add();
+                    grid.Columns.Add(2);
+
+                    grid.Rows[0].Cells[0].Value = "Przepływ przy\nOKNACH\nZAMKNIĘTYCH";
+                    grid.Rows[0].Cells[1].Value = "Przepływ przy\nmikrouchyle do 10\nmm";
+
+                    PdfGrid bottomPart = new();
+                    bottomPart.Rows.Add();
+                    bottomPart.Columns.Add(2);
+                    bottomPart.Rows[0].Cells[0].Value = "Nadmiar\nm3/h";
+                    bottomPart.Rows[0].Cells[1].Value = "Niedobór\nm3/h";
+                    bottomPart.Rows[0].Cells[0].Style = CellStyle(6, false, PdfTextAlignment.Center, 2, 2, 4);
+                    bottomPart.Rows[0].Cells[1].Style = CellStyle(6, false, PdfTextAlignment.Center, 2, 2, 4);
+                    bottomPart.Rows[0].Cells[0].Style.Borders = HideBorder();
+                    bottomPart.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                    bottomPart.Columns[0].Width = 31;
+                    
+                    grid.Rows[1].Cells[0].Value = bottomPart;
+                    grid.Rows[1].Cells[1].Value = bottomPart;
+                    grid.Rows[0].Cells[0].Style = CellStyle(7);
+                    grid.Rows[0].Cells[1].Style = CellStyle(7);
+                    grid.Rows[0].Height = 26;
+                    bottomPart.Rows[0].Height = 30;
+                    
+                    grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                    grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                    grid.Rows[1].Cells[0].Style.Borders = HideBorder(false,true);
+                    grid.Rows[1].Cells[1].Style.Borders = HideBorder(true, true);
+                    #endregion
+
+                    mainGrid.Rows[0].Cells[2].Value = grid;
+                    mainGrid.Rows[0].Cells[2].Style.Borders = HideBorder(false, true, false, true);
+                }
+                {
+                    PdfGraphicsState state = Page.Graphics.Save();
+                    Page.Graphics.TranslateTransform(100,100);
+                    Page.Graphics.RotateTransform(-90);
+                    Page.Graphics.DrawString("czyszczenie", FontSize(7), PdfBrushes.Black, new PointF(-109, 277));
+                    Page.Graphics.Restore(state);
+                    #region GridHeaderFourthChapter
+
+                    mainGrid.Rows[0].Cells[4].Value = "Uwagi";
+                    mainGrid.Rows[0].Cells[4].Style = CellStyle(7, false, PdfTextAlignment.Center, 10, 10, 22);
+
+                    #endregion
+                }
+
+                #endregion
+            }
+            {
+                #region GridContent
+
+                var totalRows = 5;
+                for (int i = 1; i <= totalRows; i++)
+                {
+                    mainGrid.Rows.Add();
+
+                    PdfGrid grid = new();
+                    grid.Rows.Add();
+                    grid.Columns.Add(3);
+
+                    #region HeightAndWidthSettings
+
+                    grid.Columns[0].Width = 50;
+                    grid.Columns[1].Width = 45;
+                    grid.Columns[2].Width = 33;
+
+                    grid.Rows[0].Height = 40;
+
+                    #endregion
+
+                    grid.Rows[0].Cells[0].Value = "Kuchnia";
+                    grid.Rows[0].Cells[1].Value = "70";
+                    grid.Rows[0].Cells[2].Value = " ";
+
+                    grid.Rows[0].Cells[0].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+                    grid.Rows[0].Cells[1].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+                    grid.Rows[0].Cells[2].Style = CellStyle(9, true, PdfTextAlignment.Center, 0, 0, 15);
+
+                    mainGrid.Rows[1].Cells[0].Value = grid;
+
+                    grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                    grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                    grid.Rows[0].Cells[2].Style.Borders = HideBorder(true);
+
+                    mainGrid.Rows[i].Cells[0].Value = grid;
+                }
+                {
+                    #region Bottom
+
+                    mainGrid.Rows.Add();
+                    {
+                        #region FirstColumn
+
+                        PdfGrid grid = new();
+                        grid.Rows.Add();
+                        grid.Columns.Add(2);
+
+                        grid.Rows[0].Height = 40;
+                        grid.Rows[0].Cells[0].Value = "Suma\nobjętości\nstrumienia\npowietrza";
+                        grid.Columns[0].Width = 50;
+                        grid.Rows[0].Cells[0].Style = CellStyle(9, true);
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder(false, false, true);
+
+                        PdfGrid rightSideGrid = new();
+                        rightSideGrid.Rows.Add();
+                        rightSideGrid.Rows.Add();
+                        rightSideGrid.Columns.Add(1);
+
+                        rightSideGrid.Rows[0].Height = 19;
+                        rightSideGrid.Rows[1].Height = 21;
+                        rightSideGrid.Rows[0].Cells[0].Value = "ZMIERZONA";
+                        rightSideGrid.Rows[1].Cells[0].Value = "WYMAGANA\nPN/83-B/03430";
+                        rightSideGrid.Rows[0].Cells[0].Style = CellStyle(8, true, PdfTextAlignment.Center, 0, 0, 2);
+                        rightSideGrid.Rows[1].Cells[0].Style = CellStyle(8, true, PdfTextAlignment.Center, 0, 0, 2);
+                        
+                        rightSideGrid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        rightSideGrid.Rows[1].Cells[0].Style.Borders = HideBorder(false, true);
+
+                        grid.Rows[0].Cells[1].Value = rightSideGrid;
+                        grid.Rows[0].Cells[1].Style.Borders = HideBorder();
+
+                        #endregion
+
+                        mainGrid.Rows[mainGrid.Rows.Count - 1].Cells[0].Value = grid;
+                    }
+                    {
+                        #region SecondColumn
+
+                        PdfGrid grid = new();
+
+                        grid.Rows.Add();
+                        grid.Rows.Add();
+
+                        grid.Rows[0].Height = 20;
+                        grid.Rows[1].Height = 20;
+                        
+                        grid.Columns.Add(1);
+
+                        PdfGrid topRowGrid = new();
+                        topRowGrid.Columns.Add(2);
+                        topRowGrid.Rows.Add();
+                        topRowGrid.Rows[0].Height = 17;
+                      //  topRowGrid.Columns[0].Width = 63;
+                        topRowGrid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        topRowGrid.Rows[0].Cells[1].Style.Borders = HideBorder();
+
+                        grid.Rows[0].Cells[0].Value = topRowGrid;
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        grid.Rows[1].Cells[0].Style.Borders = HideBorder(false, true);
+                        #endregion
+
+                        mainGrid.Rows[mainGrid.Rows.Count - 1].Cells[1].Value = grid;
+                    }
+                    {
+                        #region ThirdColumn
+
+                        PdfGrid grid = new();
+                        grid.Rows.Add();
+                        grid.Columns.Add(2);
+                        grid.Rows[0].Height = 40;
+                        
+                        grid.Columns[0].Width = 64;
+                        grid.Columns[1].Width = 63;
+
+                        grid.Rows[0].Cells[0].Style.Borders = HideBorder();
+                        grid.Rows[0].Cells[1].Style.Borders = HideBorder(true);
+                        
+                        #endregion
+
+                        mainGrid.Rows[mainGrid.Rows.Count - 1].Cells[2].Value = grid;
+                        mainGrid.Rows[mainGrid.Rows.Count - 1].Cells[3].Style.Borders = HideBorder(false, false, false, true);
+                        mainGrid.Rows[mainGrid.Rows.Count - 1].Cells[4].Style.Borders = HideBorder(false, true, true, true);
+                    }
+
+                    #endregion
+                }
+                #endregion
+            }
+
+            #endregion
+            
+            var gridDrawResult = mainGrid.Draw(Page, new PointF(0, 165));
+
+
+            #region ThirdChapter
+
+            Graphics.DrawString("Uwagi - wentylacja", FontSize(8), PdfBrushes.Black, new PointF(gridDrawResult.Bounds.Left + 50, gridDrawResult.Bounds.Bottom + 10));
+            GenerateInput(400, new PointF(gridDrawResult.Bounds.Left + 50, gridDrawResult.Bounds.Bottom + 20), 20, "Zobowiązuje się użytkownika mieszkania do zapewnienia właściwego napływu powietrza do\nmieszkania");
+            
+            Graphics.DrawString("Instalacja gazowa", FontSize(8), PdfBrushes.Black, new PointF(gridDrawResult.Bounds.Left + 50, gridDrawResult.Bounds.Bottom + 50));
+            GenerateInput(100, new PointF(gridDrawResult.Bounds.Left + 120, gridDrawResult.Bounds.Bottom + 50));
+
+            Graphics.DrawString("Urządzenie gazowe:", FontSize(8), PdfBrushes.Black, new PointF(gridDrawResult.Bounds.Left + 50, gridDrawResult.Bounds.Bottom + 70));
+
+            PdfGridLayoutResult thirdChapterGenerateInput = null;
+            for (int i = 0; i < 2; i++)
+            {
+                if (i == 0)
+                {
+                    Graphics.DrawString((i+1) + ". Kuchnia gazowa", FontSize(8), PdfBrushes.Black, new PointF(gridDrawResult.Bounds.Left + 125, gridDrawResult.Bounds.Bottom + 70));
+                    thirdChapterGenerateInput = GenerateInput(100, new PointF(gridDrawResult.Bounds.Left + 225, gridDrawResult.Bounds.Bottom + 70));
+                }
+                else
+                {
+                    Graphics.DrawString((i+1) + ". Kuchnia gazowa", FontSize(8), PdfBrushes.Black, new PointF(gridDrawResult.Bounds.Left + 125, thirdChapterGenerateInput.Bounds.Bottom + 6));
+                    thirdChapterGenerateInput = GenerateInput(100, new PointF(thirdChapterGenerateInput.Bounds.Left, thirdChapterGenerateInput.Bounds.Bottom + 6));
                 }
             }
-            headerGrid.Draw(pdfPage, Syncfusion.Drawing.PointF.Empty);
-            second.Draw(pdfPage, new Point(0, 60));
-            thirdGrid.Draw(pdfPage, new Point(0, 120));
+            
+            Graphics.DrawString("Zawartość tlenku węgla w spalinach", FontSize(8), PdfBrushes.Black,  new PointF(gridDrawResult.Bounds.Left + 50, thirdChapterGenerateInput.Bounds.Bottom + 6));
+            thirdChapterGenerateInput = GenerateInput(100, new PointF(thirdChapterGenerateInput.Bounds.Left, thirdChapterGenerateInput.Bounds.Bottom + 6));
+            Graphics.DrawString("[max 500ppm]", FontSize(8), PdfBrushes.Black,  new PointF(gridDrawResult.Bounds.Left + 50, thirdChapterGenerateInput.Bounds.Bottom));
+            
+            
+            Graphics.DrawString("Uwagi", FontSize(8), PdfBrushes.Black, new PointF(gridDrawResult.Bounds.Left + 50, thirdChapterGenerateInput.Bounds.Bottom + 12)); //TODO check when null
+            GenerateInput(400, new PointF(gridDrawResult.Bounds.Left + 50, thirdChapterGenerateInput.Bounds.Bottom + 22), 20);
 
+            Graphics.DrawString("Zalecenia lub uwagi dla użytkownika lokalu", FontSize(8), PdfBrushes.Black, new PointF(gridDrawResult.Bounds.Left + 50, thirdChapterGenerateInput.Bounds.Bottom + 45));
+            GenerateInput(400, new PointF(gridDrawResult.Bounds.Left + 50, thirdChapterGenerateInput.Bounds.Bottom + 55), 40);
+
+            Graphics.DrawString("Zalecenia lub uwagi dla zarządcy budynku", FontSize(8), PdfBrushes.Black, new PointF(gridDrawResult.Bounds.Left + 50, thirdChapterGenerateInput.Bounds.Bottom + 100));
+            var fourthChapterLastInputPostion = GenerateInput(400, new PointF(gridDrawResult.Bounds.Left + 50, thirdChapterGenerateInput.Bounds.Bottom + 110), 20);
+
+            #endregion
+
+            #region FifthChapter
+
+            PdfGrid fifthChapterGrid = new();
+            fifthChapterGrid.Columns.Add(3);
+            fifthChapterGrid.Columns[0].Width = 140;
+            fifthChapterGrid.Columns[1].Width = 140;
+            fifthChapterGrid.Rows.Add();
+            fifthChapterGrid.Rows.Add();
+            fifthChapterGrid.Rows.Add();
+            fifthChapterGrid.Rows[0].Height = 10;
+            fifthChapterGrid.Rows[1].Height = 35;
+            fifthChapterGrid.Rows[2].Height = 10;
+
+            fifthChapterGrid.Rows[1].Cells[0].Value = "MISTRZ KOMINIARSKI\nSzymon Mączyński\nNr upr. 5598";
+            fifthChapterGrid.Rows[1].Cells[0].Style = CellStyle(7, false, PdfTextAlignment.Center, 0, 0);
+            
+            fifthChapterGrid.Rows[2].Cells[0].Value = "Pomiar wentylacji wykonał\n(podpis, pieczątka i nr uprawnień)";
+            fifthChapterGrid.Rows[2].Cells[0].Style = CellStyle(7, false, PdfTextAlignment.Center, 0, 0);
+            
+            fifthChapterGrid.Rows[1].Cells[1].Value = "KONTROLER INSTALACJI GAZOWEJ\nRafał Niegot\nG3-E/103/015/21\nG3-D/104/015/21";
+            fifthChapterGrid.Rows[1].Cells[1].Style = CellStyle(7, false, PdfTextAlignment.Center, 0, 0);
+            
+            fifthChapterGrid.Rows[2].Cells[1].Value = "Pomiar szczelności i sprawności wykonał\n(podpis, pieczątka i nr uprawnień)";
+            fifthChapterGrid.Rows[2].Cells[1].Style = CellStyle(7, false, PdfTextAlignment.Center, 0, 0);
+
+            fifthChapterGrid.Rows[0].Cells[2].Value = "wyniki pomiarów odebrano";
+            fifthChapterGrid.Rows[0].Cells[2].Style = CellStyle(6, false, PdfTextAlignment.Center, 0, 0, 2);
+            
+            fifthChapterGrid.Rows[2].Cells[2].Value = "Podpis mieszkańca lub\nużytkownika mieszkania";
+            fifthChapterGrid.Rows[2].Cells[2].Style = CellStyle(6);
+            
+            fifthChapterGrid.Rows[0].Cells[0].Style.Borders = HideBorder();
+            fifthChapterGrid.Rows[1].Cells[0].Style.Borders = HideBorder();
+            fifthChapterGrid.Rows[0].Cells[1].Style.Borders = HideBorder();
+            fifthChapterGrid.Rows[1].Cells[1].Style.Borders = HideBorder();
+            fifthChapterGrid.Rows[0].Cells[2].Style.Borders = HideBorder();
+            fifthChapterGrid.Rows[1].Cells[2].Style.Borders = HideBorder();
+            fifthChapterGrid.Rows[2].Cells[2].Style.Borders = HideBorder();
+            fifthChapterGrid.Rows[2].Cells[1].Style.Borders = HideBorder();
+            fifthChapterGrid.Rows[2].Cells[0].Style.Borders = HideBorder();
+            
+            fifthChapterGrid.Draw(Page, new PointF(50, gridDrawResult.Bounds.Bottom + 245));
+            #endregion
+            
+            
+            # region GRID_BORDERS_PROBLEM
+            Graphics.DrawLine(new PdfPen(PdfBrushes.Black, 1),new PointF(124.5f, 211), new PointF(248.5f, 211));
+            Graphics.DrawLine(new PdfPen(PdfBrushes.Black, 1), new PointF(187.1f, gridDrawResult.Bounds.Bottom - 42), new PointF(187.1f, gridDrawResult.Bounds.Bottom - 22));
+            #endregion
+
+            
             MemoryStream stream = new MemoryStream();
-            pdfDocument.Save(stream);
-            pdfDocument.Close(true);
+            documents.Save(stream);
+            documents.Close(true);
 
             return stream;
         }

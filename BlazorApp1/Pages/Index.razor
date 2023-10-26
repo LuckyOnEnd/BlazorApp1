@@ -8,6 +8,7 @@
 <h1>Hello, world!</h1>
 
 <button @onclick="GenPdf">First template</button>
+<button @onclick="GenPdf2">First template</button>
 @code{
     public async void GenPdf()
     {
@@ -22,8 +23,8 @@
 
     public async void GenPdf2()
     {
-        PdfService2 pdf = new PdfService2(_webHostEnvironment);
-        MemoryStream pdfStream = pdf.CreatePDF(GenerateSecondPdfTemplate());
+        PdfService2 pdf = new PdfService2();
+        MemoryStream pdfStream = await pdf.CreatePDF();
 
         await _jsRuntime.InvokeAsync<object>(
             "saveAsFile",
